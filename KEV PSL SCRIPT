@@ -1,0 +1,414 @@
+local v1 = loadstring(game:HttpGet("https://raw.githubusercontent.com/lkjhg969/cracked/refs/heads/main/scp/libcreck.luau", true))():AddWindow("                                   KEV HUB SCRIPT | Script By Kev| PUBLIC ", {
+    main_color = Color3.fromRGB(139, 0, 0),
+    min_size = Vector2.new(600, 400),
+    can_resize = false,
+    scrollable = true
+})
+local v2 = v1:AddTab("I N F  \226\140\172")
+v2:AddLabel("\227\128\142 INFO \227\128\143\226\159\161\227\128\142 ABOUT \227\128\143\226\159\161\227\128\142 THE \227\128\143\226\159\161\227\128\142 SCRIPT \227\128\143")
+v2:AddLabel("WELCOME TO PSL HUB  \226\152\132\239\184\143")
+v2:AddLabel("\227\128\142 OWNER OF THIS SCRIPT \227\128\143  Kev ")
+v2:AddLabel("Script Made By |", {
+    TextColor3 = Color3.fromRGB(255, 255, 255)
+})
+local vu3 = v2:AddLabel("                                               Kev ")
+task.spawn(function()
+    local v4 = 0
+    while true do
+        v4 = v4 + 0.01
+        vu3.TextColor3 = Color3.fromHSV(tick() * 0.22 % 1, 0.8, 1)
+        task.wait(0.02)
+    end
+end)
+v2:AddLabel("\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144")
+v2:AddLabel(" \226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144 INVITE LINK \226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144")
+v2:AddLabel("  INVITE LINK TO OUR DISCORD SERVER")
+v2:AddButton("Copy Discord Invite", function()
+    setclipboard("https://discord.gg/3h9Apg8AQ")
+end)
+infoTab1 = v1:AddTab(" STATS ")
+infoTab1:AddLabel("\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144")
+infoTab1:AddLabel("\227\128\142 STATS \227\128\143   ").TextSize = 20
+local vu5 = infoTab1:AddLabel("Time Spent in Server: 0d 0h 0m 0s")
+local vu6 = os.time()
+local function vu14(p7)
+    local v8 = math.floor(p7 / 86400)
+    local v9 = p7 % 86400
+    local v10 = math.floor(v9 / 3600)
+    local v11 = v9 % 3600
+    local v12 = math.floor(v11 / 60)
+    local v13 = v11 % 60
+    return string.format("%dd %dh %dm %ds", v8, v10, v12, v13)
+end
+task.spawn(function()
+    while task.wait(1) do
+        vu5.Text = "Time Spent in Server: " .. vu14(os.time() - vu6)
+    end
+end)
+local vu15 = 0
+local vu16 = game.Players.LocalPlayer.leaderstats.Rebirths.Value
+local vu17 = infoTab1:AddLabel("Rebirths Gained in Server: 0")
+local function vu18()
+    vu15 = game.Players.LocalPlayer.leaderstats.Rebirths.Value - vu16
+    vu17.Text = "Rebirths Gained in Server: " .. vu15
+end
+task.spawn(function()
+    while task.wait(0.5) do
+        vu18()
+    end
+end)
+infoTab1:AddLabel("\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144")
+infoTab1:AddLabel("PLAYER STATS").TextSize = 20
+infoTab1:AddLabel(" GAINED ").TextSize = 20
+local vu19 = {
+    StrengthGainedLabel = infoTab1:AddLabel("Amount of strength gained in this server: 0"),
+    DurabilityGainedLabel = infoTab1:AddLabel("Amount of durability gained in this server: 0"),
+    AgilityGainedLabel = infoTab1:AddLabel("Amount of agility gained in this server: 0"),
+    KillsGainedLabel = infoTab1:AddLabel("Amount of kills gained in this server: 0"),
+    EvilKarmaGainedLabel = infoTab1:AddLabel("Amount of Evil Karma gained in this server: 0"),
+    GoodKarmaGainedLabel = infoTab1:AddLabel("Amount of Good Karma gained in this server: 0")
+};
+(function()
+    local v20 = game.Players.LocalPlayer
+    if v20 then
+        local v21 = v20:WaitForChild("leaderstats")
+        if v21 then
+            local vu22 = v21:WaitForChild("Strength")
+            local vu23 = v20:WaitForChild("Durability")
+            local vu24 = v20:WaitForChild("Agility")
+            local vu25 = v21:WaitForChild("Kills")
+            local vu26 = v20:WaitForChild("evilKarma")
+            local vu27 = v20:WaitForChild("goodKarma")
+            local vu28 = vu22.Value or 0
+            local vu29 = vu23.Value or 0
+            local vu30 = vu24.Value or 0
+            local vu31 = vu25.Value or 0
+            local vu32 = vu26.Value or 0
+            local vu33 = vu27.Value or 0
+            local function vu35(p34)
+                if p34 >= 1000000000 then
+                    return string.format("%.1fB", p34 / 1000000000)
+                elseif p34 >= 1000000 then
+                    return string.format("%.1fM", p34 / 1000000)
+                elseif p34 >= 1000 then
+                    return string.format("%.1fK", p34 / 1000)
+                else
+                    return tostring(p34)
+                end
+            end
+            local function v42()
+                local v36 = vu22.Value - vu28
+                local v37 = vu23.Value - vu29
+                local v38 = vu24.Value - vu30
+                local v39 = vu25.Value - vu31
+                local v40 = vu26.Value - vu32
+                local v41 = vu27.Value - vu33
+                vu19.StrengthGainedLabel.Text = "Amount of strength gained in this server: " .. vu35(v36)
+                vu19.DurabilityGainedLabel.Text = "Amount of durability gained in this server: " .. vu35(v37)
+                vu19.AgilityGainedLabel.Text = "Amount of agility gained in this server: " .. vu35(v38)
+                vu19.KillsGainedLabel.Text = "Amount of kills gained in this server: " .. vu35(v39)
+                vu19.EvilKarmaGainedLabel.Text = "Amount of Evil Karma gained in this server: " .. vu35(v40)
+                vu19.GoodKarmaGainedLabel.Text = "Amount of Good Karma gained in this server: " .. vu35(v41)
+            end
+            vu22.Changed:Connect(v42)
+            vu23.Changed:Connect(v42)
+            vu24.Changed:Connect(v42)
+            vu25.Changed:Connect(v42)
+            vu26.Changed:Connect(v42)
+            vu27.Changed:Connect(v42)
+            v42()
+        end
+    else
+        return
+    end
+end)()
+infoTab1:AddLabel("\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144")
+infoTab1:AddLabel(" CURRENT STATS ").TextSize = 20
+local function vu44(p43)
+    if p43 >= 1000000000000000 then
+        return tostring(math.floor(p43 * 10 / 1000000000000000) / 10) .. "Qa"
+    elseif p43 >= 1000000000000 then
+        return tostring(math.floor(p43 * 10 / 1000000000000) / 10) .. "T"
+    elseif p43 >= 1000000000 then
+        return tostring(math.floor(p43 * 10 / 1000000000) / 10) .. "B"
+    elseif p43 >= 1000000 then
+        return tostring(math.floor(p43 * 10 / 1000000) / 10) .. "M"
+    elseif p43 >= 1000 then
+        return tostring(math.floor(p43 * 10 / 1000) / 10) .. "k"
+    else
+        return tostring(p43)
+    end
+end
+local function vu46(p45)
+    return vu44(p45)
+end
+local function vu48(p47)
+    return not p47 and "N/A" or string.format("%s / %d", vu44(p47), p47)
+end
+local function vu50(p49)
+    return not p49 and "N/A" or string.format("%s / %d", vu46(p49), p49)
+end
+local vu51 = {
+    Player = infoTab1:AddLabel("Player: " .. game.Players.LocalPlayer.Name),
+    Rebirths = infoTab1:AddLabel("Rebirths: 0 / 0"),
+    Strength = infoTab1:AddLabel("Strength: 0 / 0"),
+    Durability = infoTab1:AddLabel("Durability: 0 / 0"),
+    Agility = infoTab1:AddLabel("Agility: 0 / 0"),
+    Kills = infoTab1:AddLabel("Kills: 0 / 0"),
+    EvilKarma = infoTab1:AddLabel("Evil Karma: 0 / 0"),
+    GoodKarma = infoTab1:AddLabel("Good Karma: 0 / 0")
+}
+local function vu56(p52, p53)
+    if not p52 then
+        return nil
+    end
+    local v54 = p52:FindFirstChild(p53)
+    local v55 = tick()
+    while true do
+        v54 = v54 or (tick() - v55 >= 3 or p52:FindFirstChild(p53))
+        if v54 then
+            break
+        end
+        task.wait(0.1)
+    end
+    return v54
+end
+local function vu75(p57)
+    local v58 = tostring(p57):lower()
+    if # v58 == 0 then
+        return game.Players.LocalPlayer
+    end
+    local v59, v60, v61 = ipairs(game.Players:GetPlayers())
+    while true do
+        local v62
+        v61, v62 = v59(v60, v61)
+        if v61 == nil then
+            break
+        end
+        if v62.Name:lower() == v58 then
+            return v62
+        end
+    end
+    local v63, v64, v65 = ipairs(game.Players:GetPlayers())
+    while true do
+        local v66
+        v65, v66 = v63(v64, v65)
+        if v65 == nil then
+            break
+        end
+        if v66.DisplayName and v66.DisplayName:lower() == v58 then
+            return v66
+        end
+    end
+    local v67, v68, v69 = ipairs(game.Players:GetPlayers())
+    while true do
+        local v70
+        v69, v70 = v67(v68, v69)
+        if v69 == nil then
+            break
+        end
+        if string.find(v70.Name:lower(), v58, 1, true) then
+            return v70
+        end
+    end
+    local v71, v72, v73 = ipairs(game.Players:GetPlayers())
+    while true do
+        local v74
+        v73, v74 = v71(v72, v73)
+        if v73 == nil then
+            break
+        end
+        if v74.DisplayName and string.find(v74.DisplayName:lower(), v58, 1, true) then
+            return v74
+        end
+    end
+    return nil
+end
+local function vu109(p76)
+    if p76 then
+        vu51.Player.Text = "Player: " .. p76.Name .. (p76.DisplayName and (" (" .. p76.DisplayName .. ")" or "") or "")
+        local v77 = p76:FindFirstChild("leaderstats") or vu56(p76, "leaderstats")
+        local v78
+        if v77 then
+            v78 = v77:FindFirstChild("Strength") or vu56(v77, "Strength")
+        else
+            v78 = v77
+        end
+        local v79
+        if v77 then
+            v79 = v77:FindFirstChild("Rebirths") or vu56(v77, "Rebirths")
+        else
+            v79 = v77
+        end
+        if v77 then
+            v77 = v77:FindFirstChild("Kills") or vu56(v77, "Kills")
+        end
+        local v80 = p76:FindFirstChild("Durability") or vu56(p76, "Durability")
+        local v81 = p76:FindFirstChild("Agility") or vu56(p76, "Agility")
+        local v82 = p76:FindFirstChild("evilKarma") or vu56(p76, "evilKarma")
+        local v83 = p76:FindFirstChild("goodKarma") or vu56(p76, "goodKarma")
+        local v84 = vu51.Rebirths
+        local v85 = "Rebirths: "
+        local v86 = vu48
+        if v79 then
+            v79 = v79.Value
+        end
+        v84.Text = v85 .. v86(v79)
+        local v87 = vu51.Strength
+        local v88 = "Strength: "
+        local v89 = vu50
+        if v78 then
+            v78 = v78.Value
+        end
+        v87.Text = v88 .. v89(v78)
+        local v90 = vu51.Durability
+        local v91 = "Durability: "
+        local v92 = vu50
+        if v80 then
+            v80 = v80.Value
+        end
+        v90.Text = v91 .. v92(v80)
+        local v93 = vu51.Agility
+        local v94 = "Agility: "
+        local v95 = vu50
+        if v81 then
+            v81 = v81.Value
+        end
+        v93.Text = v94 .. v95(v81)
+        local v96 = vu51.Kills
+        local v97 = "Kills: "
+        local v98 = vu48
+        if v77 then
+            v77 = v77.Value
+        end
+        v96.Text = v97 .. v98(v77)
+        local v99 = vu51.EvilKarma
+        local v100 = "Evil Karma: "
+        local v101 = vu48
+        if v82 then
+            v82 = v82.Value
+        end
+        v99.Text = v100 .. v101(v82)
+        local v102 = vu51.GoodKarma
+        local v103 = "Good Karma: "
+        local v104 = vu48
+        if v83 then
+            v83 = v83.Value
+        end
+        v102.Text = v103 .. v104(v83)
+    else
+        local v105, v106, v107 = pairs(vu51)
+        while true do
+            local v108
+            v107, v108 = v105(v106, v107)
+            if v107 == nil then
+                break
+            end
+            if v107 ~= "Player" then
+                v108.Text = v107 .. ": N/A"
+            end
+        end
+        vu51.Player.Text = "Player: Not Found"
+    end
+end
+local vu110 = {}
+local function vu115()
+    local v111, v112, v113 = pairs(vu110)
+    while true do
+        local vu114
+        v113, vu114 = v111(v112, v113)
+        if v113 == nil then
+            break
+        end
+        if vu114 then
+            pcall(function()
+                vu114:Disconnect()
+            end)
+        end
+    end
+    vu110 = {}
+end
+local function vu120(pu116)
+    vu115()
+    if pu116 then
+        local function v118(p117)
+            if p117 then
+                table.insert(vu110, p117.Changed:Connect(function()
+                    vu109(pu116)
+                end))
+            end
+        end
+        local v119 = pu116:FindFirstChild("leaderstats") or vu56(pu116, "leaderstats")
+        if v119 then
+            v118(v119:FindFirstChild("Strength") or vu56(v119, "Strength"))
+            v118(v119:FindFirstChild("Rebirths") or vu56(v119, "Rebirths"))
+            v118(v119:FindFirstChild("Kills") or vu56(v119, "Kills"))
+        end
+        v118(pu116:FindFirstChild("Durability") or vu56(pu116, "Durability"))
+        v118(pu116:FindFirstChild("Agility") or vu56(pu116, "Agility"))
+        v118(pu116:FindFirstChild("evilKarma") or vu56(pu116, "evilKarma"))
+        v118(pu116:FindFirstChild("goodKarma") or vu56(pu116, "goodKarma"))
+    end
+end
+local vu121 = nil
+infoTab1:AddTextBox(" USERNAME or DISPLAY NAME ", function(p122)
+    local v123 = vu75(p122)
+    if v123 ~= vu121 then
+        vu121 = v123
+        vu109(v123)
+        vu120(v123)
+    end
+end, {
+    clear = false,
+    placeholder = "Type username or display name..."
+})
+infoTab1:AddLabel("EX  username -mohaop just type mo / display name - ZX_BLA BLA just type ZX")
+infoTab1:AddLabel("\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144")
+vu121 = game.Players.LocalPlayer
+vu109(vu121)
+vu120(vu121)
+Main = v1:AddTab("MAIN")
+local v124 = Main:AddFolder("Auto Punch")
+v124:AddSwitch("Auto Punch", function(p125)
+    local vu126 = game.Players.LocalPlayer
+    local function v132(p127, p128)
+        local v129 = vu126:FindFirstChild("Backpack")
+        local v130 = vu126.Character or vu126.CharacterAdded:Wait()
+        local v131 = v129 and v129:FindFirstChild(p127)
+        if v131 then
+            v131.Parent = v130
+            if p128 then
+                v131.Parent = v129
+            end
+        end
+    end
+    if p125 then
+        v132("Punch", false)
+        local v133 = not vu126.Backpack:FindFirstChild("Punch") and vu126.Character
+        if v133 then
+            v133 = vu126.Character:FindFirstChild("Punch")
+        end
+        _G.punchanim = true
+        local v134 = vu126
+        while _G.punchanim do
+            if v133 then
+                if v133.Parent ~= v134.Character then
+                    v133.Parent = v134.Character
+                end
+                v133:Activate()
+                task.wait()
+            else
+                _G.punchanim = false
+            end
+        end
+    else
+        _G.punchanim = false
+    end
+end)
+v124:AddSwitch("Fast Punch ", function(p135)
+    local v136 = game.Players.LocalPlayer
+    local v137 = v136.Backpack:FindFirstChild("Punch")
+    local v138 = game.Workspace:FindFirstChild(v136.Name)
+    local v139
+    if v138 then
+        v139 = v138:FindFirstChild(
