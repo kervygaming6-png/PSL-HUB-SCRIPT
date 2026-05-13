@@ -12,7 +12,7 @@ v2:AddLabel("\227\128\142 OWNER OF THIS SCRIPT \227\128\143  Kev ")
 v2:AddLabel("Script Made By |", {
     TextColor3 = Color3.fromRGB(255, 255, 255)
 })
-local vu3 = v2:AddLabel("                                             Kev")
+local vu3 = v2:AddLabel(" 💎 Kev ❄️ ")
 task.spawn(function()
     local v4 = 0
     while true do
@@ -1127,7 +1127,7 @@ rocksTab:AddSwitch("Lock Position", function(p324)
     end
 end)
 rocksTab:AddLabel("\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144The Rocks [ MAKE SURE U HAVE THE REQUIRED DURABILITY] \226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144")
-rocksTab:AddSwitch("Jungle Rock", function()
+rocksTab:AddSwitch(" Jungle Rock", function()
     _G.fastHitActive = not _G.fastHitActive
     if _G.fastHitActive then
         getgenv().autoFarm = true
@@ -1156,7 +1156,7 @@ rocksTab:AddSwitch("Jungle Rock", function()
         end
     end
 end)
-rocksTab:AddSwitch("Muscle King Rock", function()
+rocksTab:AddSwitch(" Muscle King Rock", function()
     _G.fastHitActive = not _G.fastHitActive
     if _G.fastHitActive then
         getgenv().autoFarm = true
@@ -1185,7 +1185,7 @@ rocksTab:AddSwitch("Muscle King Rock", function()
         end
     end
 end)
-rocksTab:AddSwitch("Legends Rock", function()
+rocksTab:AddSwitch(" Legends Rock", function()
     _G.fastHitActive = not _G.fastHitActive
     if _G.fastHitActive then
         getgenv().autoFarm = true
@@ -1214,7 +1214,7 @@ rocksTab:AddSwitch("Legends Rock", function()
         end
     end
 end)
-rocksTab:AddSwitch("Tiny Rock", function()
+rocksTab:AddSwitch(" Tiny Rock", function()
     _G.fastHitActive = not _G.fastHitActive
     if _G.fastHitActive then
         getgenv().autoFarm = true
@@ -1243,7 +1243,7 @@ rocksTab:AddSwitch("Tiny Rock", function()
         end
     end
 end)
-rocksTab:AddSwitch("Punch Rock", function()
+rocksTab:AddSwitch(" Punch Rock", function()
     _G.fastHitActive = not _G.fastHitActive
     if _G.fastHitActive then
         getgenv().autoFarm = true
@@ -1272,7 +1272,7 @@ rocksTab:AddSwitch("Punch Rock", function()
         end
     end
 end)
-rocksTab:AddSwitch("Large Rock", function()
+rocksTab:AddSwitch(" Large Rock", function()
     _G.fastHitActive = not _G.fastHitActive
     if _G.fastHitActive then
         getgenv().autoFarm = true
@@ -1301,7 +1301,7 @@ rocksTab:AddSwitch("Large Rock", function()
         end
     end
 end)
-rocksTab:AddSwitch("Golden Rock", function()
+rocksTab:AddSwitch(" Golden Rock", function()
     _G.fastHitActive = not _G.fastHitActive
     if _G.fastHitActive then
         getgenv().autoFarm = true
@@ -1330,7 +1330,7 @@ rocksTab:AddSwitch("Golden Rock", function()
         end
     end
 end)
-rocksTab:AddSwitch("Inferno Rock", function()
+rocksTab:AddSwitch(" Inferno Rock", function()
     _G.fastHitActive = not _G.fastHitActive
     if _G.fastHitActive then
         getgenv().autoFarm = true
@@ -1359,7 +1359,7 @@ rocksTab:AddSwitch("Inferno Rock", function()
         end
     end
 end)
-rocksTab:AddSwitch("Frozen Rock", function()
+rocksTab:AddSwitch(" Frozen Rock", function()
     _G.fastHitActive = not _G.fastHitActive
     if _G.fastHitActive then
         getgenv().autoFarm = true
@@ -1388,7 +1388,7 @@ rocksTab:AddSwitch("Frozen Rock", function()
         end
     end
 end)
-rocksTab:AddSwitch("Mystic Rock", function()
+rocksTab:AddSwitch(" Mystic Rock", function()
     _G.fastHitActive = not _G.fastHitActive
     if _G.fastHitActive then
         getgenv().autoFarm = true
@@ -1422,15 +1422,15 @@ teleportTab:AddLabel("\226\149\144\226\149\144\226\149\144\226\149\144\226\149\1
 teleportTab:AddLabel("\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144Teleport\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144")
 local vu346 = {
     BEACH = Vector3.new(0, 0, 0),
-    ["FROST GYM"] = Vector3.new(- 2650, 7, - 393),
-    ["MYTHICAL GYM"] = Vector3.new(2255, 7, 1071),
-    ["ETERNAL GYM"] = Vector3.new(- 6768, 7, - 1287),
-    ["LEGEND GYM"] = Vector3.new(4429, 991, - 3880),
-    ["MUSCLE KING GYM"] = Vector3.new(- 8799, 17, - 5798),
-    ["JUNGLE GYM"] = Vector3.new(- 7894, 6, 2386),
-    ["TINY GYM"] = Vector3.new(50, 7, 1918),
-    ["LAVA BRAWL"] = Vector3.new(4471, 119, - 8836),
-    ["DESERT BRAWL"] = Vector3.new(960, 17, - 7398),
+    [" ❄️ FROST GYM"] = Vector3.new(- 2650, 7, - 393),
+    [" 🪽 MYTHICAL GYM"] = Vector3.new(2255, 7, 1071),
+    [" 👽 ETERNAL GYM"] = Vector3.new(- 6768, 7, - 1287),
+    [" 👊🏻 LEGEND GYM"] = Vector3.new(4429, 991, - 3880),
+    [" 👑 MUSCLE KING GYM"] = Vector3.new(- 8799, 17, - 5798),
+    [" 🏋🏻 JUNGLE GYM"] = Vector3.new(- 7894, 6, 2386),
+    [" ▪️TINY GYM"] = Vector3.new(50, 7, 1918),
+    [" 🌋LAVA BRAWL"] = Vector3.new(4471, 119, - 8836),
+    [" 🏜️ DESERT BRAWL"] = Vector3.new(960, 17, - 7398),
     SECRET = Vector3.new(1947, 2, 6191)
 }
 local v351 = teleportTab:AddDropdown("Select Location", function(p347)
