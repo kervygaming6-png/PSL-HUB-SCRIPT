@@ -9,7 +9,7 @@ local v2 = v1:AddTab("I N F  \226\140\172")
 v2:AddLabel("\227\128\142 INFO \227\128\143\226\159\161\227\128\142 ABOUT \227\128\143\226\159\161\227\128\142 THE \227\128\143\226\159\161\227\128\142 SCRIPT \227\128\143")
 v2:AddLabel(" 💲 PAID PSL HUB 💎 \226\152\132\239\184\143")
 v2:AddLabel("\227\128\142 OWNER OF THIS SCRIPT \227\128\143  Kev ")
-v2:AddLabel("Script Made By |", {
+v2:AddLabel("Script Made By ", {
     TextColor3 = Color3.fromRGB(255, 255, 255)
 })
 local vu3 = v2:AddLabel(" 💎 Kev ❄️ ")
@@ -59,7 +59,7 @@ task.spawn(function()
     end
 end)
 infoTab1:AddLabel("\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144")
-infoTab1:AddLabel("PLAYER STATS").TextSize = 20
+infoTab1:AddLabel(" PLAYER STATS").TextSize = 20
 infoTab1:AddLabel(" GAINED ").TextSize = 20
 local vu19 = {
     StrengthGainedLabel = infoTab1:AddLabel("Amount of strength gained in this server: 0"),
@@ -368,9 +368,9 @@ infoTab1:AddLabel("\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\
 vu121 = game.Players.LocalPlayer
 vu109(vu121)
 vu120(vu121)
-Main = v1:AddTab("MAIN")
-local v124 = Main:AddFolder("Auto Punch")
-v124:AddSwitch("Auto Punch", function(p125)
+Main = v1:AddTab(" 📑 MAIN")
+local v124 = Main:AddFolder(" Auto Punch")
+v124:AddSwitch(" Auto Punch", function(p125)
     local vu126 = game.Players.LocalPlayer
     local function v132(p127, p128)
         local v129 = vu126:FindFirstChild("Backpack")
@@ -384,7 +384,7 @@ v124:AddSwitch("Auto Punch", function(p125)
         end
     end
     if p125 then
-        v132("Punch", false)
+        v132(" Punch", false)
         local v133 = not vu126.Backpack:FindFirstChild("Punch") and vu126.Character
         if v133 then
             v133 = vu126.Character:FindFirstChild("Punch")
@@ -406,7 +406,7 @@ v124:AddSwitch("Auto Punch", function(p125)
         _G.punchanim = false
     end
 end)
-v124:AddSwitch("Fast Punch 👊🏻 ", function(p135)
+v124:AddSwitch(" Fast Punch 👊🏻 ", function(p135)
     local v136 = game.Players.LocalPlayer
     local v137 = v136.Backpack:FindFirstChild("Punch")
     local v138 = game.Workspace:FindFirstChild(v136.Name)
@@ -429,9 +429,9 @@ v124:AddSwitch("Fast Punch 👊🏻 ", function(p135)
     end
 end):Set(false)
 Main:AddLabel("---Auto Farm---")
-local v140 = Main:AddFolder("Jungle Machines")
+local v140 = Main:AddFolder(" Jungle Machines")
 local vu141 = false
-v140:AddSwitch("Auto Jungle Bench", function(p142)
+v140:AddSwitch(" Auto Jungle Bench", function(p142)
     vu141 = p142
     if p142 then
         task.spawn(function()
@@ -447,7 +447,7 @@ v140:AddSwitch("Auto Jungle Bench", function(p142)
     end
 end)
 local vu144 = false
-v140:AddSwitch("Auto Jungle Bar Lift", function(p145)
+v140:AddSwitch(" Auto Jungle Bar Lift", function(p145)
     vu144 = p145
     if p145 then
         task.spawn(function()
@@ -463,7 +463,7 @@ v140:AddSwitch("Auto Jungle Bar Lift", function(p145)
     end
 end)
 local vu147 = false
-v140:AddSwitch("Auto Jungle Squat", function(p148)
+v140:AddSwitch(" Auto Jungle Squat", function(p148)
     vu147 = p148
     if p148 then
         task.spawn(function()
@@ -478,10 +478,10 @@ v140:AddSwitch("Auto Jungle Squat", function(p148)
         end)
     end
 end)
-Main:AddLabel("AUTO LIFT FUNCTION")
+Main:AddLabel(" AUTO LIFT FUNCTION")
 local v150 = Main:AddFolder("Auto Equip")
 local vu151 = false
-v150:AddSwitch("Auto Equip Weight", function(p152)
+v150:AddSwitch(" Auto Equip Weight", function(p152)
     vu151 = p152
     if p152 then
         task.spawn(function()
@@ -496,7 +496,7 @@ v150:AddSwitch("Auto Equip Weight", function(p152)
     end
 end)
 local vu154 = false
-v150:AddSwitch("Auto Equip Pushups", function(p155)
+v150:AddSwitch(" Auto Equip Pushups", function(p155)
     vu154 = p155
     if p155 then
         task.spawn(function()
@@ -511,7 +511,7 @@ v150:AddSwitch("Auto Equip Pushups", function(p155)
     end
 end)
 local vu157 = false
-v150:AddSwitch("Auto Equip Situps", function(p158)
+v150:AddSwitch(" Auto Equip Situps", function(p158)
     vu157 = p158
     if p158 then
         task.spawn(function()
@@ -526,7 +526,7 @@ v150:AddSwitch("Auto Equip Situps", function(p158)
     end
 end)
 local vu160 = false
-v150:AddSwitch("Auto Equip Handstands", function(p161)
+v150:AddSwitch(" Auto Equip Handstands", function(p161)
     vu160 = p161
     if p161 then
         task.spawn(function()
@@ -559,13 +559,13 @@ local function vu170()
         game:GetService("Players").LocalPlayer.muscleEvent:FireServer("rep")
     end
 end
-Main:AddSwitch("Auto lift", function(p171)
+Main:AddSwitch(" Auto lift", function(p171)
     vu169 = p171
     if p171 then
         coroutine.wrap(vu170)()
         print("Auto Pushups enabled")
     else
-        print("Auto Pushups disabled")
+        print(" Auto Pushups disabled")
     end
 end)
 local vu172 = game:GetService("Players")
