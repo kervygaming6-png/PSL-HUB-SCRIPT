@@ -1,5 +1,5 @@
 local v0 = loadstring(game:HttpGet("https://raw.githubusercontent.com/memejames/elerium-v2-ui-library/refs/heads/main/Library", true))()
-local v1 = v0:AddWindow("PAID PSL HUB💎", {
+local v1 = v0:AddWindow("PAID PSL HUB 💎", {
     main_color = Color3.fromRGB(139, 0, 0),
     min_size = Vector2.new(615, 685),
     can_resize = false,
@@ -363,7 +363,7 @@ end, {
     clear = false,
     placeholder = "Type username or display name..."
 })
-infoTab1:AddLabel("EX  username -mohaop just type mo / display name - ZX_BLA BLA just type ZX")
+infoTab1:AddLabel("EX  username - Kzenalt0 / display name - PSL_Vekk just type PSL")
 infoTab1:AddLabel("\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144")
 vu121 = game.Players.LocalPlayer
 vu109(vu121)
@@ -406,7 +406,7 @@ v124:AddSwitch("Auto Punch", function(p125)
         _G.punchanim = false
     end
 end)
-v124:AddSwitch("Fast Punch ", function(p135)
+v124:AddSwitch("Fast Punch 👊🏻 ", function(p135)
     local v136 = game.Players.LocalPlayer
     local v137 = v136.Backpack:FindFirstChild("Punch")
     local v138 = game.Workspace:FindFirstChild(v136.Name)
@@ -573,7 +573,7 @@ local vu173 = vu172.LocalPlayer
 rebirthTab = v1:AddTab("REBIRTH")
 rebirthTab:AddLabel("\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144 AUTO KING \226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144")
 local vu174 = false
-rebirthTab:AddSwitch("Auto King ", function(p175)
+rebirthTab:AddSwitch("Auto King 👑 ", function(p175)
     vu174 = p175
     local vu176 = CFrame.new(- 8865, 430, - 5749)
     local vu177 = game.Players.LocalPlayer
@@ -762,7 +762,7 @@ local function v226()
     end
     return v225
 end
-local v227 = v1:AddTab("KILLS")
+local v227 = v1:AddTab("KILLS 💀 ")
 v227:Show()
 v227:AddLabel("\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144KILL FUNCTION\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144\226\149\144")
 v227:AddSwitch("Anti Knockback", function(p228)
@@ -835,7 +835,7 @@ vu251.PlayerRemoving:Connect(function(p256)
     end
 end)
 local vu257 = false
-v227:AddSwitch("Kill All Players", function(p258)
+v227:AddSwitch("Kill All Players 💀 ", function(p258)
     vu257 = p258
     if p258 then
         task.spawn(function()
@@ -911,7 +911,7 @@ end, {
     clear = false,
     placeholder = "Type username or display name (partial is OK)"
 })
-v227:AddLabel("EX: username - mohaop just type mo / display name - ZX_BLA BLA just type ZX")
+v227:AddLabel("EX: username - Kzenalt0 / display name - PSL_Vekk just type PSL")
 local vu275 = false
 v227:AddSwitch("Auto Kill Player", function(p276)
     vu275 = p276
@@ -991,8 +991,8 @@ v227:AddSwitch("Spy Player", function(p288)
         end
     end
 end)
-v227:AddLabel("EX: username - mohaop just type mo / display name - ZX_BLA BLA just type ZX")
-rocksTab = v1:AddTab("ROCKS")
+v227:AddLabel("EX: username - Kzenalt0 / display name - PSL_Vekk just type PSL")
+rocksTab = v1:AddTab("ROCKS 🛘 ")
 local vu293 = game.Players.LocalPlayer
 rocksTab:AddSwitch("Auto Punch", function(p294)
     local function v300(p295, p296)
@@ -1185,7 +1185,7 @@ rocksTab:AddSwitch("Muscle King Rock", function()
         end
     end
 end)
-rocksTab:AddSwitch("Legnds Rock", function()
+rocksTab:AddSwitch("Legends Rock", function()
     _G.fastHitActive = not _G.fastHitActive
     if _G.fastHitActive then
         getgenv().autoFarm = true
@@ -1359,7 +1359,7 @@ rocksTab:AddSwitch("Inferno Rock", function()
         end
     end
 end)
-rocksTab:AddSwitch("Froze Rock", function()
+rocksTab:AddSwitch("Frozen Rock", function()
     _G.fastHitActive = not _G.fastHitActive
     if _G.fastHitActive then
         getgenv().autoFarm = true
