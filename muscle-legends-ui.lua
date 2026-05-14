@@ -1,28 +1,31 @@
 -- ============================================
 -- MUSCLE LEGENDS RGB DRAGGABLE UI WITH REAL FEATURES
--- MOBILE OPTIMIZED FOR DELTA EXECUTOR
+-- LANDSCAPE MODE - MOBILE OPTIMIZED FOR DELTA EXECUTOR
 -- ============================================
 
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Workspace = game:GetService("Workspace")
 
 -- ============================================
--- UI CONFIGURATION
+-- UI CONFIGURATION - LANDSCAPE MODE
 -- ============================================
 
 local UIConfig = {
-    Width = 327,
-    Height = 450,
+    Width = 500,
+    Height = 350,
     RGBSpeed = 0.01,
-    TabCount = 6,
+    TabCount = 8,
     Tabs = {
         "Farming",
         "Strength", 
         "Killing",
         "Rebirth",
+        "Teleport",
         "Eggs",
+        "Glitching",
         "Settings"
     }
 }
@@ -64,6 +67,11 @@ local autoKillAllEnabled = false
 local autoRebirthEnabled = false
 local autoSizeEnabled = false
 local autoOpenEggsEnabled = false
+local selectedPet = "Neon Guardian"
+local selectedAura = "Blue Aura"
+local selectedRock = "Tiny Island Rock"
+local autoRockEnabled = false
+local autoTPMuscleKingEnabled = false
 
 -- ============================================
 -- RGB COLOR FUNCTION
@@ -98,13 +106,13 @@ minimizeCorner.CornerRadius = UDim.new(1, 0)
 minimizeCorner.Parent = minimizeButton
 
 -- ============================================
--- CREATE MAIN UI FRAME
+-- CREATE MAIN UI FRAME - LANDSCAPE
 -- ============================================
 
 local mainFrame = Instance.new("Frame")
 mainFrame.Name = "MainFrame"
 mainFrame.Size = UDim2.new(0, UIConfig.Width, 0, UIConfig.Height)
-mainFrame.Position = UDim2.new(0, 20, 0, 150)
+mainFrame.Position = UDim2.new(0.5, -UIConfig.Width/2, 0.5, -UIConfig.Height/2)
 mainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 35)
 mainFrame.BorderSizePixel = 0
 mainFrame.Parent = screenGui
@@ -137,9 +145,9 @@ titleLabel.Size = UDim2.new(1, -20, 1, 0)
 titleLabel.Position = UDim2.new(0, 10, 0, 0)
 titleLabel.BackgroundTransparency = 1
 titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-titleLabel.TextSize = 14
+titleLabel.TextSize = 16
 titleLabel.Font = Enum.Font.GothamBold
-titleLabel.Text = "MUSCLE LEGENDS"
+titleLabel.Text = "MUSCLE LEGENDS V3"
 titleLabel.Parent = topBar
 titleLabel.ZIndex = 1001
 
@@ -149,7 +157,7 @@ titleLabel.ZIndex = 1001
 
 local tabFrame = Instance.new("Frame")
 tabFrame.Name = "TabFrame"
-tabFrame.Size = UDim2.new(1, 0, 0, 35)
+tabFrame.Size = UDim2.new(1, 0, 0, 50)
 tabFrame.Position = UDim2.new(0, 0, 0, 40)
 tabFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 45)
 tabFrame.BorderSizePixel = 0
@@ -166,7 +174,7 @@ for i = 1, UIConfig.TabCount do
     tabButton.Name = "Tab" .. i
     tabButton.BackgroundColor3 = (i == 1) and getRGBColor(0) or Color3.fromRGB(45, 45, 55)
     tabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-    tabButton.TextSize = 9
+    tabButton.TextSize = 8
     tabButton.Font = Enum.Font.GothamBold
     tabButton.Text = UIConfig.Tabs[i]
     tabButton.BorderSizePixel = 0
@@ -189,8 +197,8 @@ end
 
 local contentFrame = Instance.new("ScrollingFrame")
 contentFrame.Name = "ContentFrame"
-contentFrame.Size = UDim2.new(1, 0, 1, -75)
-contentFrame.Position = UDim2.new(0, 0, 0, 75)
+contentFrame.Size = UDim2.new(1, 0, 1, -90)
+contentFrame.Position = UDim2.new(0, 0, 0, 90)
 contentFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 35)
 contentFrame.BorderSizePixel = 0
 contentFrame.ScrollBarThickness = 8
@@ -224,7 +232,7 @@ local function fireRep()
 end
 
 -- ============================================
--- AUTO FARM LOOP
+-- AUTO FARM LOOPS
 -- ============================================
 
 task.spawn(function()
@@ -238,10 +246,6 @@ task.spawn(function()
     end
 end)
 
--- ============================================
--- AUTO WEIGHT LOOP
--- ============================================
-
 task.spawn(function()
     while true do
         if autoWeightEnabled then
@@ -253,10 +257,6 @@ task.spawn(function()
         end
     end
 end)
-
--- ============================================
--- AUTO PUSHUPS LOOP
--- ============================================
 
 task.spawn(function()
     while true do
@@ -270,10 +270,6 @@ task.spawn(function()
     end
 end)
 
--- ============================================
--- AUTO HANDSTAND LOOP
--- ============================================
-
 task.spawn(function()
     while true do
         if autoHandstandEnabled then
@@ -286,10 +282,6 @@ task.spawn(function()
     end
 end)
 
--- ============================================
--- AUTO SITUPS LOOP
--- ============================================
-
 task.spawn(function()
     while true do
         if autoSitupsEnabled then
@@ -301,10 +293,6 @@ task.spawn(function()
         end
     end
 end)
-
--- ============================================
--- AUTO EAT EGG LOOP
--- ============================================
 
 task.spawn(function()
     while true do
@@ -328,10 +316,6 @@ task.spawn(function()
     end
 end)
 
--- ============================================
--- AUTO PUNCH LOOP
--- ============================================
-
 task.spawn(function()
     while true do
         if autoPunchEnabled then
@@ -346,10 +330,6 @@ task.spawn(function()
         end
     end
 end)
-
--- ============================================
--- FAST TOOLS LOOP
--- ============================================
 
 task.spawn(function()
     while true do
@@ -380,7 +360,7 @@ task.spawn(function()
 end)
 
 -- ============================================
--- AUTO GOOD KARMA KILL LOOP
+-- KILLING LOOPS
 -- ============================================
 
 task.spawn(function()
@@ -420,10 +400,6 @@ task.spawn(function()
     end
 end)
 
--- ============================================
--- AUTO KILL ALL LOOP
--- ============================================
-
 task.spawn(function()
     while true do
         if autoKillAllEnabled then
@@ -457,7 +433,7 @@ task.spawn(function()
 end)
 
 -- ============================================
--- AUTO REBIRTH LOOP
+-- REBIRTH LOOPS
 -- ============================================
 
 task.spawn(function()
@@ -473,10 +449,6 @@ task.spawn(function()
     end
 end)
 
--- ============================================
--- AUTO SIZE LOOP
--- ============================================
-
 task.spawn(function()
     while true do
         if autoSizeEnabled then
@@ -491,20 +463,15 @@ task.spawn(function()
 end)
 
 -- ============================================
--- AUTO OPEN EGGS LOOP
+-- AUTO TELEPORT TO MUSCLE KING
 -- ============================================
 
 task.spawn(function()
     while true do
-        if autoOpenEggsEnabled then
+        if autoTPMuscleKingEnabled then
             pcall(function()
-                local eggShop = ReplicatedStorage:FindFirstChild("cPetShopFolder")
-                if eggShop then
-                    local eggs = eggShop:GetChildren()
-                    if #eggs > 0 then
-                        local randomEgg = eggs[math.random(1, #eggs)]
-                        ReplicatedStorage.cPetShopRemote:InvokeServer(randomEgg)
-                    end
+                if player.Character then
+                    player.Character:MoveTo(Vector3.new(-8646, 17, -5738))
                 end
             end)
             task.wait(0.5)
@@ -515,13 +482,77 @@ task.spawn(function()
 end)
 
 -- ============================================
--- CREATE CONTENT FOR EACH TAB
+-- AUTO OPEN EGGS (DROPDOWN SELECTED)
+-- ============================================
+
+task.spawn(function()
+    while true do
+        if autoOpenEggsEnabled and selectedPet ~= "" then
+            pcall(function()
+                local eggShop = ReplicatedStorage:FindFirstChild("cPetShopFolder")
+                if eggShop then
+                    local petToOpen = eggShop:FindFirstChild(selectedPet)
+                    if petToOpen then
+                        ReplicatedStorage.cPetShopRemote:InvokeServer(petToOpen)
+                    end
+                end
+            end)
+            task.wait(0.1)
+        else
+            task.wait(0.5)
+        end
+    end
+end)
+
+-- ============================================
+-- AUTO ROCK GLITCHING (WITHOUT TELEPORTING)
+-- ============================================
+
+task.spawn(function()
+    while true do
+        if autoRockEnabled and selectedRock ~= "" then
+            pcall(function()
+                local character = player.Character
+                if character then
+                    local leftHand = character:FindFirstChild("LeftHand")
+                    local rightHand = character:FindFirstChild("RightHand")
+                    
+                    if leftHand and rightHand then
+                        -- Find the rock without teleporting
+                        for _, rock in ipairs(Workspace.machinesFolder:GetDescendants()) do
+                            if rock.Name == "Rock" then
+                                local parent = rock.Parent
+                                if parent and parent.Name == selectedRock then
+                                    -- Fire touch interest to hit the rock
+                                    firetouchinterest(rightHand, rock, 1)
+                                    firetouchinterest(leftHand, rock, 1)
+                                    firetouchinterest(rightHand, rock, 0)
+                                    firetouchinterest(leftHand, rock, 0)
+                                end
+                            end
+                        end
+                        
+                        -- Fire punch event
+                        player.muscleEvent:FireServer("punch", "rightHand")
+                        player.muscleEvent:FireServer("punch", "leftHand")
+                    end
+                end
+            end)
+            task.wait(0.1)
+        else
+            task.wait(0.5)
+        end
+    end
+end)
+
+-- ============================================
+-- CREATE TOGGLE FUNCTION
 -- ============================================
 
 local function createToggle(parent, title, description, callback)
     local contentItem = Instance.new("Frame")
     contentItem.Name = title
-    contentItem.Size = UDim2.new(1, -20, 0, 60)
+    contentItem.Size = UDim2.new(1, -20, 0, 50)
     contentItem.BackgroundColor3 = Color3.fromRGB(40, 40, 50)
     contentItem.BorderSizePixel = 0
     contentItem.Parent = parent
@@ -541,16 +572,16 @@ local function createToggle(parent, title, description, callback)
     titleText.Font = Enum.Font.GothamBold
     titleText.Text = title
     titleText.TextXAlignment = Enum.TextXAlignment.Left
-    titleText.Parent = contentItem
+    titleText.Parent = titleText.Parent or contentItem
     titleText.ZIndex = 999
     
     local descText = Instance.new("TextLabel")
     descText.Name = "Description"
-    descText.Size = UDim2.new(1, -20, 0, 30)
-    descText.Position = UDim2.new(0, 10, 0, 25)
+    descText.Size = UDim2.new(1, -60, 0, 25)
+    descText.Position = UDim2.new(0, 10, 0, 22)
     descText.BackgroundTransparency = 1
-    descText.TextColor3 = Color3.fromRGB(200, 200, 200)
-    descText.TextSize = 10
+    descText.TextColor3 = Color3.fromRGB(180, 180, 180)
+    descText.TextSize = 9
     descText.Font = Enum.Font.Gotham
     descText.Text = description
     descText.TextXAlignment = Enum.TextXAlignment.Left
@@ -560,11 +591,11 @@ local function createToggle(parent, title, description, callback)
     
     local toggleButton = Instance.new("TextButton")
     toggleButton.Name = "ToggleButton"
-    toggleButton.Size = UDim2.new(0, 45, 0, 20)
-    toggleButton.Position = UDim2.new(1, -60, 0, 20)
+    toggleButton.Size = UDim2.new(0, 40, 0, 18)
+    toggleButton.Position = UDim2.new(1, -55, 0, 16)
     toggleButton.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
     toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-    toggleButton.TextSize = 9
+    toggleButton.TextSize = 8
     toggleButton.Font = Enum.Font.GothamBold
     toggleButton.Text = "OFF"
     toggleButton.BorderSizePixel = 0
@@ -586,6 +617,105 @@ local function createToggle(parent, title, description, callback)
             callback(false)
         end
     end)
+end
+
+-- ============================================
+-- CREATE DROPDOWN FUNCTION
+-- ============================================
+
+local function createDropdown(parent, title, options, callback)
+    local contentItem = Instance.new("Frame")
+    contentItem.Name = title
+    contentItem.Size = UDim2.new(1, -20, 0, 50)
+    contentItem.BackgroundColor3 = Color3.fromRGB(40, 40, 50)
+    contentItem.BorderSizePixel = 0
+    contentItem.Parent = parent
+    contentItem.ZIndex = 999
+    
+    local contentCorner = Instance.new("UICorner")
+    contentCorner.CornerRadius = UDim.new(0, 8)
+    contentCorner.Parent = contentItem
+    
+    local titleText = Instance.new("TextLabel")
+    titleText.Name = "Title"
+    titleText.Size = UDim2.new(0.5, -10, 0, 20)
+    titleText.Position = UDim2.new(0, 10, 0, 5)
+    titleText.BackgroundTransparency = 1
+    titleText.TextColor3 = Color3.fromRGB(255, 255, 255)
+    titleText.TextSize = 11
+    titleText.Font = Enum.Font.GothamBold
+    titleText.Text = title
+    titleText.TextXAlignment = Enum.TextXAlignment.Left
+    titleText.Parent = contentItem
+    titleText.ZIndex = 999
+    
+    local dropdown = Instance.new("TextButton")
+    dropdown.Name = "Dropdown"
+    dropdown.Size = UDim2.new(1, -20, 0, 20)
+    dropdown.Position = UDim2.new(0, 10, 0, 27)
+    dropdown.BackgroundColor3 = Color3.fromRGB(50, 50, 60)
+    dropdown.TextColor3 = Color3.fromRGB(200, 200, 200)
+    dropdown.TextSize = 9
+    dropdown.Font = Enum.Font.Gotham
+    dropdown.Text = options[1] or "Select"
+    dropdown.BorderSizePixel = 0
+    dropdown.Parent = contentItem
+    dropdown.ZIndex = 999
+    
+    local dropdownCorner = Instance.new("UICorner")
+    dropdownCorner.CornerRadius = UDim.new(0, 5)
+    dropdownCorner.Parent = dropdown
+    
+    local isOpen = false
+    local listFrame = Instance.new("ScrollingFrame")
+    listFrame.Name = "ListFrame"
+    listFrame.Size = UDim2.new(1, -20, 0, 0)
+    listFrame.Position = UDim2.new(0, 10, 0, 50)
+    listFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 45)
+    listFrame.BorderSizePixel = 0
+    listFrame.ScrollBarThickness = 5
+    listFrame.Visible = false
+    listFrame.Parent = contentItem
+    listFrame.ZIndex = 998
+    
+    local listLayout = Instance.new("UIListLayout")
+    listLayout.Padding = UDim.new(0, 2)
+    listLayout.Parent = listFrame
+    
+    dropdown.MouseButton1Click:Connect(function()
+        isOpen = not isOpen
+        listFrame.Visible = isOpen
+        if isOpen then
+            contentItem.Size = UDim2.new(1, -20, 0, 50 + (#options * 20) + 10)
+            listFrame.Size = UDim2.new(1, 0, 0, (#options * 20) + 5)
+        else
+            contentItem.Size = UDim2.new(1, -20, 0, 50)
+            listFrame.Size = UDim2.new(1, 0, 0, 0)
+        end
+    end)
+    
+    for _, option in ipairs(options) do
+        local button = Instance.new("TextButton")
+        button.Name = option
+        button.Size = UDim2.new(1, 0, 0, 18)
+        button.BackgroundColor3 = Color3.fromRGB(45, 45, 55)
+        button.TextColor3 = Color3.fromRGB(200, 200, 200)
+        button.TextSize = 9
+        button.Font = Enum.Font.Gotham
+        button.Text = option
+        button.BorderSizePixel = 0
+        button.Parent = listFrame
+        button.ZIndex = 998
+        
+        button.MouseButton1Click:Connect(function()
+            dropdown.Text = option
+            callback(option)
+            isOpen = false
+            listFrame.Visible = false
+            contentItem.Size = UDim2.new(1, -20, 0, 50)
+            listFrame.Size = UDim2.new(1, 0, 0, 0)
+        end)
+    end
 end
 
 -- ============================================
@@ -656,17 +786,54 @@ local function createContent()
             autoSizeEnabled = state
         end)
     
-    -- Tab 5: EGGS
+    -- Tab 5: TELEPORT
     elseif currentTab == 5 then
-        createToggle(contentFrame, "Auto Open Eggs", "Auto open random eggs", function(state)
+        createToggle(contentFrame, "Auto TP Muscle King", "Teleport to Muscle King Gym", function(state)
+            autoTPMuscleKingEnabled = state
+        end)
+    
+    -- Tab 6: EGGS
+    elseif currentTab == 6 then
+        local petList = {
+            "Neon Guardian", "Blue Birdie", "Blue Bunny", "Blue Firecaster", "Blue Pheonix",
+            "Crimson Falcon", "Cybernetic Showdown Dragon", "Dark Golem", "Dark Legends Manticore",
+            "Dark Vampy", "Darkstar Hunter", "Eternal Strike Leviathan", "Frostwave Legends Penguin",
+            "Gold Warrior", "Golden Pheonix", "Golden Viking", "Green Butterfly", "Green Firecaster",
+            "Infernal Dragon", "Lightning Strike Phantom", "Magic Butterfly", "Muscle Sensei",
+            "Orange Hedgehog", "Orange Pegasus", "Phantom Genesis Dragon", "Purple Dragon",
+            "Purple Falcon", "Red Dragon", "Red Firecaster", "Red Kitty", "Silver Dog",
+            "Ultimate Supernova Pegasus", "Ultra Birdie", "White Pegasus", "White Pheonix", "Yellow Butterfly"
+        }
+        
+        createDropdown(contentFrame, "Select Pet", petList, function(pet)
+            selectedPet = pet
+        end)
+        
+        createToggle(contentFrame, "Auto Open Pet", "Auto hatch selected pet", function(state)
             autoOpenEggsEnabled = state
         end)
     
-    -- Tab 6: SETTINGS
-    elseif currentTab == 6 then
+    -- Tab 7: GLITCHING
+    elseif currentTab == 7 then
+        local rockList = {
+            "Tiny Island Rock", "Starter Island Rock", "Legend Beach Rock", "Frost Gym Rock",
+            "Mythical Gym Rock", "Eternal Gym Rock", "Legend Gym Rock", "Muscle King Gym Rock",
+            "Ancient Jungle Rock"
+        }
+        
+        createDropdown(contentFrame, "Select Rock", rockList, function(rock)
+            selectedRock = rock
+        end)
+        
+        createToggle(contentFrame, "Auto Glitch Rock", "Auto punch rock without TP", function(state)
+            autoRockEnabled = state
+        end)
+    
+    -- Tab 8: SETTINGS
+    elseif currentTab == 8 then
         local settingsLabel = Instance.new("TextLabel")
         settingsLabel.Name = "SettingsLabel"
-        settingsLabel.Size = UDim2.new(1, -20, 0, 120)
+        settingsLabel.Size = UDim2.new(1, -20, 0, 150)
         settingsLabel.BackgroundColor3 = Color3.fromRGB(40, 40, 50)
         settingsLabel.BorderSizePixel = 0
         settingsLabel.Parent = contentFrame
@@ -676,14 +843,14 @@ local function createContent()
         settingsCorner.CornerRadius = UDim.new(0, 8)
         settingsCorner.Parent = settingsLabel
         
-        settingsLabel.Text = "🔷 MUSCLE LEGENDS UI\n\nVersion: v2.0.0\n\nCreator: Kev\n\nAll tabs fully working!\nClick circle to hide/show"
+        settingsLabel.Text = "🔷 MUSCLE LEGENDS V3\n\nVersion: v3.0.0\n\nCreator: Kev\n\nAll tabs fully working!\nClick circle to hide/show\n\nLandscape Mode Enabled!"
         settingsLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
         settingsLabel.TextSize = 11
         settingsLabel.Font = Enum.Font.Gotham
         settingsLabel.TextWrapped = true
     end
     
-    contentFrame.CanvasSize = UDim2.new(0, 0, 0, contentLayout.AbsoluteContentSize.Y)
+    contentFrame.CanvasSize = UDim2.new(0, 0, 0, contentLayout.AbsoluteContentSize.Y + 20)
 end
 
 createContent()
@@ -719,7 +886,7 @@ UserInputService.InputChanged:Connect(function(input, gameProcessed)
 end)
 
 -- ============================================
--- MINIMIZE/SHOW BUTTON (IMPROVED)
+-- MINIMIZE/SHOW BUTTON
 -- ============================================
 
 minimizeButton.InputBegan:Connect(function(input, gameProcessed)
@@ -758,7 +925,6 @@ RunService.Heartbeat:Connect(function()
     end
 end)
 
-print("✓ Muscle Legends UI v2.0.0 Loaded!")
-print("✓ Click the RGB circle to show/hide")
-print("✓ Drag the top bar to move")
-print("✓ All 6 tabs with real features ready!")
+print("✓ Muscle Legends UI v3.0.0 Loaded!")
+print("✓ Landscape Mode Enabled!")
+print("✓ 8 Tabs with full features ready!")
