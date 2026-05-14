@@ -1,0 +1,949 @@
+local v0 = loadstring(game:HttpGet("https://raw.githubusercontent.com/memejames/elerium-v2-ui-library/refs/heads/main/Library", true))()
+
+-- Create window with scrollable and resizable enabled
+local v1 = v0:AddWindow("💎 PAID PSL HUB 💎", {
+    main_color = Color3.fromRGB(200, 0, 0),  -- Red theme
+    min_size = Vector2.new(615, 685),
+    can_resize = true,  -- ✅ Made resizable
+    scrollable = true   -- ✅ Made scrollable
+})
+
+-- Function to add RGB color changing effect
+local function AddRGBLabel(tab, text)
+    local label = tab:AddLabel(text)
+    task.spawn(function()
+        while true do
+            label.TextColor3 = Color3.fromHSV(tick() * 0.22 % 1, 0.8, 1)
+            task.wait(0.02)
+        end
+    end)
+    return label
+end
+
+-- INFO TAB
+local v2 = v1:AddTab("ℹ️ INFO")
+v2:AddLabel("🔺 INFO 🔺 ABOUT 🔺 THE 🔺 SCRIPT 🔺")
+AddRGBLabel(v2, "💲 PAID PSL HUB 💎 ⚡")
+v2:AddLabel("🔺 OWNER OF THIS SCRIPT 🔺  Kev")
+v2:AddLabel("Script Made By", {
+    TextColor3 = Color3.fromRGB(255, 0, 0)
+})
+AddRGBLabel(v2, "💎 Kev ❄️")
+
+v2:AddLabel("═══════════════════════════")
+v2:AddLabel("🔗 DISCORD INVITE LINK 🔗")
+v2:AddLabel("JOIN OUR DISCORD SERVER FOR UPDATES & SUPPORT")
+v2:AddButton("📋 Copy Discord Invite", function()
+    setclipboard("https://discord.gg/3h9Apg8AQ")
+end)
+
+-- STATS TAB
+infoTab1 = v1:AddTab("💪 STATS 💪")
+infoTab1:AddLabel("═════════════════════════════")
+infoTab1:AddLabel("🔺 STATS 🔺").TextSize = 20
+
+local vu5 = infoTab1:AddLabel("⏱️ Time Spent in Server: 0d 0h 0m 0s")
+local vu6 = os.time()
+
+local function vu14(p7)
+    local v8 = math.floor(p7 / 86400)
+    local v9 = p7 % 86400
+    local v10 = math.floor(v9 / 3600)
+    local v11 = v9 % 3600
+    local v12 = math.floor(v11 / 60)
+    local v13 = v11 % 60
+    return string.format("%dd %dh %dm %ds", v8, v10, v12, v13)
+end
+
+task.spawn(function()
+    while task.wait(1) do
+        vu5.Text = "⏱️ Time Spent in Server: " .. vu14(os.time() - vu6)
+    end
+end)
+
+local vu15 = 0
+local vu16 = game.Players.LocalPlayer.leaderstats.Rebirths.Value
+local vu17 = infoTab1:AddLabel("🔄 Rebirths Gained in Server: 0")
+
+local function vu18()
+    vu15 = game.Players.LocalPlayer.leaderstats.Rebirths.Value - vu16
+    vu17.Text = "🔄 Rebirths Gained in Server: " .. vu15
+end
+
+task.spawn(function()
+    while task.wait(0.5) do
+        vu18()
+    end
+end)
+
+infoTab1:AddLabel("═════════════════════════════")
+infoTab1:AddLabel("👤 PLAYER STATS").TextSize = 20
+infoTab1:AddLabel("📈 GAINED").TextSize = 20
+
+local vu19 = {
+    StrengthGainedLabel = infoTab1:AddLabel("💪 Amount of strength gained: 0"),
+    DurabilityGainedLabel = infoTab1:AddLabel("🛡️ Amount of durability gained: 0"),
+    AgilityGainedLabel = infoTab1:AddLabel("⚡ Amount of agility gained: 0"),
+    KillsGainedLabel = infoTab1:AddLabel("💀 Amount of kills gained: 0"),
+    EvilKarmaGainedLabel = infoTab1:AddLabel("😈 Amount of Evil Karma gained: 0"),
+    GoodKarmaGainedLabel = infoTab1:AddLabel("😇 Amount of Good Karma gained: 0")
+}
+
+(function()
+    local v20 = game.Players.LocalPlayer
+    if v20 then
+        local v21 = v20:WaitForChild("leaderstats")
+        if v21 then
+            local vu22 = v21:WaitForChild("Strength")
+            local vu23 = v20:WaitForChild("Durability")
+            local vu24 = v20:WaitForChild("Agility")
+            local vu25 = v21:WaitForChild("Kills")
+            local vu26 = v20:WaitForChild("evilKarma")
+            local vu27 = v20:WaitForChild("goodKarma")
+            local vu28 = vu22.Value or 0
+            local vu29 = vu23.Value or 0
+            local vu30 = vu24.Value or 0
+            local vu31 = vu25.Value or 0
+            local vu32 = vu26.Value or 0
+            local vu33 = vu27.Value or 0
+
+            local function vu35(p34)
+                if p34 >= 1000000000 then
+                    return string.format("%.1fB", p34 / 1000000000)
+                elseif p34 >= 1000000 then
+                    return string.format("%.1fM", p34 / 1000000)
+                elseif p34 >= 1000 then
+                    return string.format("%.1fK", p34 / 1000)
+                else
+                    return tostring(p34)
+                end
+            end
+
+            local function v42()
+                local v36 = vu22.Value - vu28
+                local v37 = vu23.Value - vu29
+                local v38 = vu24.Value - vu30
+                local v39 = vu25.Value - vu31
+                local v40 = vu26.Value - vu32
+                local v41 = vu27.Value - vu33
+
+                vu19.StrengthGainedLabel.Text = "💪 Amount of strength gained: " .. vu35(v36)
+                vu19.DurabilityGainedLabel.Text = "🛡️ Amount of durability gained: " .. vu35(v37)
+                vu19.AgilityGainedLabel.Text = "⚡ Amount of agility gained: " .. vu35(v38)
+                vu19.KillsGainedLabel.Text = "💀 Amount of kills gained: " .. vu35(v39)
+                vu19.EvilKarmaGainedLabel.Text = "😈 Amount of Evil Karma gained: " .. vu35(v40)
+                vu19.GoodKarmaGainedLabel.Text = "😇 Amount of Good Karma gained: " .. vu35(v41)
+            end
+
+            vu22.Changed:Connect(v42)
+            vu23.Changed:Connect(v42)
+            vu24.Changed:Connect(v42)
+            vu25.Changed:Connect(v42)
+            vu26.Changed:Connect(v42)
+            vu27.Changed:Connect(v42)
+            v42()
+        end
+    end
+end)()
+
+infoTab1:AddLabel("═════════════════════════════")
+infoTab1:AddLabel("📊 CURRENT STATS").TextSize = 20
+
+local function vu44(p43)
+    if p43 >= 1000000000000000 then
+        return tostring(math.floor(p43 * 10 / 1000000000000000) / 10) .. "Qa"
+    elseif p43 >= 1000000000000 then
+        return tostring(math.floor(p43 * 10 / 1000000000000) / 10) .. "T"
+    elseif p43 >= 1000000000 then
+        return tostring(math.floor(p43 * 10 / 1000000000) / 10) .. "B"
+    elseif p43 >= 1000000 then
+        return tostring(math.floor(p43 * 10 / 1000000) / 10) .. "M"
+    elseif p43 >= 1000 then
+        return tostring(math.floor(p43 * 10 / 1000) / 10) .. "k"
+    else
+        return tostring(p43)
+    end
+end
+
+local function vu46(p45)
+    return vu44(p45)
+end
+
+local function vu48(p49)
+    return not p49 and "N/A" or string.format("%s / %d", vu44(p49), p49)
+end
+
+local function vu50(p49)
+    return not p49 and "N/A" or string.format("%s / %d", vu46(p49), p49)
+end
+
+local vu51 = {
+    Player = infoTab1:AddLabel("👤 Player: " .. game.Players.LocalPlayer.Name),
+    Rebirths = infoTab1:AddLabel("🔄 Rebirths: 0 / 0"),
+    Strength = infoTab1:AddLabel("💪 Strength: 0 / 0"),
+    Durability = infoTab1:AddLabel("🛡️ Durability: 0 / 0"),
+    Agility = infoTab1:AddLabel("⚡ Agility: 0 / 0"),
+    Kills = infoTab1:AddLabel("💀 Kills: 0 / 0"),
+    EvilKarma = infoTab1:AddLabel("😈 Evil Karma: 0 / 0"),
+    GoodKarma = infoTab1:AddLabel("😇 Good Karma: 0 / 0")
+}
+
+local function vu56(p52, p53)
+    if not p52 then
+        return nil
+    end
+    local v54 = p52:FindFirstChild(p53)
+    local v55 = tick()
+    while true do
+        v54 = v54 or (tick() - v55 >= 3 or p52:FindFirstChild(p53))
+        if v54 then
+            break
+        end
+        task.wait(0.1)
+    end
+    return v54
+end
+
+local function vu75(p57)
+    local v58 = tostring(p57):lower()
+    if # v58 == 0 then
+        return game.Players.LocalPlayer
+    end
+    for i, v62 in ipairs(game.Players:GetPlayers()) do
+        if v62.Name:lower() == v58 then
+            return v62
+        end
+    end
+    for i, v66 in ipairs(game.Players:GetPlayers()) do
+        if v66.DisplayName and v66.DisplayName:lower() == v58 then
+            return v66
+        end
+    end
+    for i, v70 in ipairs(game.Players:GetPlayers()) do
+        if string.find(v70.Name:lower(), v58, 1, true) then
+            return v70
+        end
+    end
+    for i, v74 in ipairs(game.Players:GetPlayers()) do
+        if v74.DisplayName and string.find(v74.DisplayName:lower(), v58, 1, true) then
+            return v74
+        end
+    end
+    return nil
+end
+
+local function vu109(p76)
+    if p76 then
+        vu51.Player.Text = "👤 Player: " .. p76.Name .. (p76.DisplayName and (" (" .. p76.DisplayName .. ")") or "")
+        local v77 = p76:FindFirstChild("leaderstats") or vu56(p76, "leaderstats")
+        local v78
+        if v77 then
+            v78 = v77:FindFirstChild("Strength") or vu56(v77, "Strength")
+        else
+            v78 = v77
+        end
+        local v79
+        if v77 then
+            v79 = v77:FindFirstChild("Rebirths") or vu56(v77, "Rebirths")
+        else
+            v79 = v77
+        end
+        if v77 then
+            v77 = v77:FindFirstChild("Kills") or vu56(v77, "Kills")
+        end
+        local v80 = p76:FindFirstChild("Durability") or vu56(p76, "Durability")
+        local v81 = p76:FindFirstChild("Agility") or vu56(p76, "Agility")
+        local v82 = p76:FindFirstChild("evilKarma") or vu56(p76, "evilKarma")
+        local v83 = p76:FindFirstChild("goodKarma") or vu56(p76, "goodKarma")
+
+        vu51.Rebirths.Text = "🔄 Rebirths: " .. vu48(v79 and v79.Value or nil)
+        vu51.Strength.Text = "💪 Strength: " .. vu50(v78 and v78.Value or nil)
+        vu51.Durability.Text = "🛡️ Durability: " .. vu50(v80 and v80.Value or nil)
+        vu51.Agility.Text = "⚡ Agility: " .. vu50(v81 and v81.Value or nil)
+        vu51.Kills.Text = "💀 Kills: " .. vu48(v77 and v77.Value or nil)
+        vu51.EvilKarma.Text = "😈 Evil Karma: " .. vu48(v82 and v82.Value or nil)
+        vu51.GoodKarma.Text = "😇 Good Karma: " .. vu48(v83 and v83.Value or nil)
+    end
+end
+
+local vu110 = {}
+local function vu115()
+    for i, vu114 in pairs(vu110) do
+        if vu114 then
+            pcall(function()
+                vu114:Disconnect()
+            end)
+        end
+    end
+    vu110 = {}
+end
+
+local function vu120(pu116)
+    vu115()
+    if pu116 then
+        local function v118(p117)
+            if p117 then
+                table.insert(vu110, p117.Changed:Connect(function()
+                    vu109(pu116)
+                end))
+            end
+        end
+        local v119 = pu116:FindFirstChild("leaderstats") or vu56(pu116, "leaderstats")
+        if v119 then
+            v118(v119:FindFirstChild("Strength") or vu56(v119, "Strength"))
+            v118(v119:FindFirstChild("Rebirths") or vu56(v119, "Rebirths"))
+            v118(v119:FindFirstChild("Kills") or vu56(v119, "Kills"))
+        end
+        v118(pu116:FindFirstChild("Durability") or vu56(pu116, "Durability"))
+        v118(pu116:FindFirstChild("Agility") or vu56(pu116, "Agility"))
+        v118(pu116:FindFirstChild("evilKarma") or vu56(pu116, "evilKarma"))
+        v118(pu116:FindFirstChild("goodKarma") or vu56(pu116, "goodKarma"))
+    end
+end
+
+local vu121 = nil
+infoTab1:AddTextBox("👤 USERNAME or DISPLAY NAME", function(p122)
+    local v123 = vu75(p122)
+    if v123 ~= vu121 then
+        vu121 = v123
+        vu109(v123)
+        vu120(v123)
+    end
+end, {
+    clear = false,
+    placeholder = "Type username or display name..."
+})
+infoTab1:AddLabel("📝 EX: username - Kzenalt0 / display name - PSL_Vekk")
+
+vu121 = game.Players.LocalPlayer
+vu109(vu121)
+vu120(vu121)
+
+-- MAIN TAB
+Main = v1:AddTab("📑 MAIN")
+
+-- Auto Punch
+local v124 = Main:AddFolder("👊 Auto Punch")
+v124:AddSwitch("⚙️ Auto Punch", function(p125)
+    local vu126 = game.Players.LocalPlayer
+    local function v132(p127, p128)
+        local v129 = vu126:FindFirstChild("Backpack")
+        local v130 = vu126.Character or vu126.CharacterAdded:Wait()
+        local v131 = v129 and v129:FindFirstChild(p127)
+        if v131 then
+            v131.Parent = v130
+            if p128 then
+                v131.Parent = v129
+            end
+        end
+    end
+    if p125 then
+        v132("Punch", false)
+        local v133 = not vu126.Backpack:FindFirstChild("Punch") and vu126.Character
+        if v133 then
+            v133 = vu126.Character:FindFirstChild("Punch")
+        end
+        _G.punchanim = true
+        local v134 = vu126
+        while _G.punchanim do
+            if v133 then
+                if v133.Parent ~= v134.Character then
+                    v133.Parent = v134.Character
+                end
+                v133:Activate()
+                task.wait()
+            else
+                _G.punchanim = false
+            end
+        end
+    else
+        _G.punchanim = false
+    end
+end)
+
+v124:AddSwitch("⚡ Fast Punch 👊", function(p135)
+    local v136 = game.Players.LocalPlayer
+    local v137 = v136.Backpack:FindFirstChild("Punch")
+    local v138 = game.Workspace:FindFirstChild(v136.Name)
+    local v139
+    if v138 then
+        v139 = v138:FindFirstChild("Punch")
+    else
+        v139 = nil
+    end
+    if p135 then
+        if v137 and v137:FindFirstChild("attackTime") then
+            v137.attackTime.Value = 0
+        elseif v139 and v139:FindFirstChild("attackTime") then
+            v139.attackTime.Value = 0
+        end
+    elseif v137 and v137:FindFirstChild("attackTime") then
+        v137.attackTime.Value = 0.35
+    elseif v139 and v139:FindFirstChild("attackTime") then
+        v139.attackTime.Value = 0.35
+    end
+end):Set(false)
+
+Main:AddLabel("═════════════════════════════")
+Main:AddLabel("🤖 Auto Farm")
+
+-- Jungle Machines
+local v140 = Main:AddFolder("🌴 Jungle Machines")
+local vu141 = false
+v140:AddSwitch("🏋️ Auto Jungle Bench", function(p142)
+    vu141 = p142
+    if p142 then
+        task.spawn(function()
+            while vu141 do
+                local v143 = game.Players.LocalPlayer
+                if v143.Character and v143.Character:FindFirstChild("HumanoidRootPart") then
+                    v143.Character:SetPrimaryPartCFrame(CFrame.new(-8629.88086, 64.8842468, 1855.03467))
+                    game:GetService("ReplicatedStorage").rEvents.machineInteractRemote:InvokeServer("useMachine", workspace.machinesFolder["Jungle Bench"].interactSeat)
+                end
+                task.wait(0.1)
+            end
+        end)
+    end
+end)
+
+local vu144 = false
+v140:AddSwitch("🏋️ Auto Jungle Bar Lift", function(p145)
+    vu144 = p145
+    if p145 then
+        task.spawn(function()
+            while vu144 do
+                local v146 = game.Players.LocalPlayer
+                if v146.Character and v146.Character:FindFirstChild("HumanoidRootPart") then
+                    v146.Character:SetPrimaryPartCFrame(CFrame.new(-8678.05566, 14.5030098, 2089.25977))
+                    game:GetService("ReplicatedStorage").rEvents.machineInteractRemote:InvokeServer("useMachine", workspace.machinesFolder["Jungle Bar Lift"].interactSeat)
+                end
+                task.wait(0.1)
+            end
+        end)
+    end
+end)
+
+local vu147 = false
+v140:AddSwitch("🏋️ Auto Jungle Squat", function(p148)
+    vu147 = p148
+    if p148 then
+        task.spawn(function()
+            while vu147 do
+                local v149 = game.Players.LocalPlayer
+                if v149.Character and v149.Character:FindFirstChild("HumanoidRootPart") then
+                    v149.Character:SetPrimaryPartCFrame(CFrame.new(-8374.25586, 34.5933418, 2932.44995))
+                    game:GetService("ReplicatedStorage").rEvents.machineInteractRemote:InvokeServer("useMachine", workspace.machinesFolder["Jungle Squat"].interactSeat)
+                end
+                task.wait(0.1)
+            end
+        end)
+    end
+end)
+
+Main:AddLabel("═════════════════════════════")
+Main:AddLabel("⚙️ Auto Equipment")
+
+-- Auto Equip
+local v150 = Main:AddFolder("🎒 Auto Equip")
+local vu151 = false
+v150:AddSwitch("⚙️ Auto Equip Weight", function(p152)
+    vu151 = p152
+    if p152 then
+        task.spawn(function()
+            while vu151 do
+                local v153 = game.Players.LocalPlayer.Backpack:FindFirstChild("Weight")
+                if v153 and game.Players.LocalPlayer.Character then
+                    v153.Parent = game.Players.LocalPlayer.Character
+                end
+                task.wait(0.1)
+            end
+        end)
+    end
+end)
+
+local vu154 = false
+v150:AddSwitch("⚙️ Auto Equip Pushups", function(p155)
+    vu154 = p155
+    if p155 then
+        task.spawn(function()
+            while vu154 do
+                local v156 = game.Players.LocalPlayer.Backpack:FindFirstChild("Pushups")
+                if v156 and game.Players.LocalPlayer.Character then
+                    v156.Parent = game.Players.LocalPlayer.Character
+                end
+                task.wait(0.1)
+            end
+        end)
+    end
+end)
+
+local vu157 = false
+v150:AddSwitch("⚙️ Auto Equip Situps", function(p158)
+    vu157 = p158
+    if p158 then
+        task.spawn(function()
+            while vu157 do
+                local v159 = game.Players.LocalPlayer.Backpack:FindFirstChild("Situps")
+                if v159 and game.Players.LocalPlayer.Character then
+                    v159.Parent = game.Players.LocalPlayer.Character
+                end
+                task.wait(0.1)
+            end
+        end)
+    end
+end)
+
+local vu160 = false
+v150:AddSwitch("⚙️ Auto Equip Handstands", function(p161)
+    vu160 = p161
+    if p161 then
+        task.spawn(function()
+            while vu160 do
+                local v162 = game.Players.LocalPlayer.Backpack:FindFirstChild("Handstand")
+                if v162 and game.Players.LocalPlayer.Character then
+                    v162.Parent = game.Players.LocalPlayer.Character
+                end
+                task.wait(0.1)
+            end
+        end)
+    end
+end)
+
+local function vu168(p163)
+    local v164 = game.Players.LocalPlayer
+    local v165 = v164:FindFirstChild("Backpack")
+    local v166 = v164.Character or v164.CharacterAdded:Wait()
+    local v167 = v165 and v165:FindFirstChild(p163)
+    if not v167 then
+        return nil
+    end
+    v167.Parent = v166
+    return v167
+end
+
+local vu169 = false
+local function vu170()
+    while vu169 do
+        task.wait(0.1)
+        vu168("Pushup")
+        game:GetService("Players").LocalPlayer.muscleEvent:FireServer("rep")
+    end
+end
+
+Main:AddSwitch("🏋️ Auto Lift", function(p171)
+    vu169 = p171
+    if p171 then
+        coroutine.wrap(vu170)()
+        print("✅ Auto Lift enabled")
+    else
+        print("❌ Auto Lift disabled")
+    end
+end)
+
+-- REBIRTH TAB
+rebirthTab = v1:AddTab("🔄 REBIRTH")
+rebirthTab:AddLabel("═════════════════════════════")
+AddRGBLabel(rebirthTab, "👑 AUTO KING 👑")
+
+local vu174 = false
+rebirthTab:AddSwitch("👑 Auto King", function(p175)
+    vu174 = p175
+    local vu176 = CFrame.new(-8865, 430, -5749)
+    local vu177 = game.Players.LocalPlayer
+    if p175 then
+        local v178 = vu177.Character or vu177.CharacterAdded:Wait()
+        if v178 and v178:FindFirstChild("HumanoidRootPart") then
+            v178.HumanoidRootPart.CFrame = vu176
+        end
+        getgenv().kingLockConnection = game:GetService("RunService").Heartbeat:Connect(function()
+            local v179 = vu177.Character
+            if v179 and v179:FindFirstChild("HumanoidRootPart") then
+                v179.HumanoidRootPart.CFrame = vu176
+            end
+        end)
+    elseif getgenv().kingLockConnection then
+        getgenv().kingLockConnection:Disconnect()
+        getgenv().kingLockConnection = nil
+    end
+end)
+
+rebirthTab:AddLabel("═════════════════════════════")
+rebirthTab:AddLabel("🔄 REBIRTH FUNCTIONS")
+
+local vu180 = false
+local vu181 = nil
+rebirthTab:AddTextBox("🎯 Target Rebirth Amount", function(p182)
+    vu181 = tonumber(p182)
+end, {
+    clear = false,
+    placeholder = "Enter target rebirth amount"
+})
+
+rebirthTab:AddSwitch("🤖 Auto Rebirth", function(p183)
+    vu180 = p183
+    if p183 then
+        coroutine.wrap(function()
+            while vu180 do
+                local v184 = game.Players.LocalPlayer
+                local v185 = v184:FindFirstChild("leaderstats")
+                if v185 then
+                    v185 = v184.leaderstats:FindFirstChild("Rebirths")
+                end
+                if v185 and (vu181 and vu181 <= v185.Value) then
+                    print("✅ Target rebirth amount reached:", v185.Value)
+                    vu180 = false
+                else
+                    game:GetService("ReplicatedStorage").rEvents.rebirthRemote:InvokeServer("rebirthRequest")
+                end
+                task.wait(0.1)
+            end
+        end)()
+        print("✅ Auto Rebirth enabled")
+    else
+        print("❌ Auto Rebirth disabled")
+    end
+end)
+
+rebirthTab:AddLabel("═════════════════════════════")
+AddRGBLabel(rebirthTab, "⚙️ AUTO WEIGHT ⚙️")
+
+rebirthTab:AddSwitch("⚙️ AUTO WEIGHT", function(p186)
+    isAutoStrength = p186
+    local v187 = game.Players.LocalPlayer
+    local v188 = v187:FindFirstChild("Backpack")
+    while isAutoStrength do
+        wait(0.01)
+        local v189 = v188 and v188:FindFirstChild("Weight")
+        if v189 then
+            v187.Character.Humanoid:EquipTool(v189)
+        end
+        game:GetService("Players").LocalPlayer.muscleEvent:FireServer(unpack({
+            "rep"
+        }))
+    end
+    if not isAutoStrength then
+        local v190 = v187.Character:FindFirstChildOfClass("Tool")
+        if v190 and v190.Name == "Weight" then
+            v190.Parent = v188
+        end
+    end
+end):Set(false)
+
+rebirthTab:AddLabel("═════════════════════════════")
+AddRGBLabel(rebirthTab, "📏 AUTO SIZE 2 📏")
+
+local vu191 = nil
+rebirthTab:AddSwitch("📏 Auto Size 2", function(p192)
+    if p192 then
+        vu191 = task.spawn(function()
+            while task.wait(0) do
+                game:GetService("ReplicatedStorage").rEvents.changeSpeedSizeRemote:InvokeServer("changeSize", 2)
+            end
+        end)
+        print("✅ Auto Size 2 enabled")
+    else
+        if vu191 then
+            task.cancel(vu191)
+            vu191 = nil
+        end
+        print("❌ Auto Size 2 disabled")
+    end
+end)
+
+rebirthTab:AddLabel("═════════════════════════════")
+AddRGBLabel(rebirthTab, "👁️ HIDE FRAMES 👁️")
+
+rebirthTab:AddSwitch("👁️ Hide All Frames", function(p193)
+    local v194 = game:GetService("ReplicatedStorage")
+    for i, v198 in pairs(v194:GetChildren()) do
+        if v198.Name:match("Frame$") then
+            v198.Visible = not p193
+        end
+    end
+end)
+
+rebirthTab:AddLabel("═════════════════════════════")
+AddRGBLabel(rebirthTab, "📍 LOCK POSITION 📍")
+
+rebirthTab:AddSwitch("📍 Lock Position", function(p199)
+    if p199 then
+        local vu200 = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        getgenv().posLock = game:GetService("RunService").Heartbeat:Connect(function()
+            if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = vu200
+            end
+        end)
+    elseif getgenv().posLock then
+        getgenv().posLock:Disconnect()
+        getgenv().posLock = nil
+    end
+end)
+
+-- KILLS TAB
+local vu172 = game:GetService("Players")
+local vu173 = vu172.LocalPlayer
+
+local function vu223(p201)
+    local v202 = tostring(p201):lower()
+    if # v202 == 0 then
+        return nil
+    end
+    for i, v207 in ipairs(vu172:GetPlayers()) do
+        if v207.Name:lower() == v202 then
+            return v207
+        end
+    end
+    for i, v212 in ipairs(vu172:GetPlayers()) do
+        if v212.DisplayName and v212.DisplayName:lower() == v202 then
+            return v212
+        end
+    end
+    for i, v217 in ipairs(vu172:GetPlayers()) do
+        if string.find(v217.Name:lower(), v202, 1, true) then
+            return v217
+        end
+    end
+    for i, v222 in ipairs(vu172:GetPlayers()) do
+        if v222.DisplayName and string.find(v222.DisplayName:lower(), v202, 1, true) then
+            return v222
+        end
+    end
+    return nil
+end
+
+local function v226()
+    local v224 = vu173.Backpack:FindFirstChild("Punch")
+    if v224 and vu173.Character then
+        v224.Parent = vu173.Character
+    end
+    local v225 = vu173.Character
+    if v225 then
+        v225 = vu173.Character:FindFirstChild("Punch")
+    end
+    return v225
+end
+
+v227 = v1:AddTab("💀 KILLS")
+v227:Show()
+v227:AddLabel("═════════════════════════════")
+AddRGBLabel(v227, "💀 KILL FUNCTION 💀")
+
+v227:AddSwitch("🛡️ Anti Knockback", function(p228)
+    if p228 then
+        local v229 = game.Players.LocalPlayer.Name
+        local v230 = game.Workspace:FindFirstChild(v229):FindFirstChild("HumanoidRootPart")
+        local v231 = Instance.new("BodyVelocity")
+        v231.MaxForce = Vector3.new(100000, 0, 100000)
+        v231.Velocity = Vector3.new(0, 0, 0)
+        v231.P = 1250
+        v231.Parent = v230
+    else
+        local v232 = game.Players.LocalPlayer.Name
+        local v233 = game.Workspace:FindFirstChild(v232):FindFirstChild("HumanoidRootPart"):FindFirstChild("BodyVelocity")
+        if v233 and v233.MaxForce == Vector3.new(100000, 0, 100000) then
+            v233:Destroy()
+        end
+    end
+end)
+
+local vu234 = {}
+local vu235 = "Teleport"
+local v237 = v227:AddDropdown("🎯 Select Kill Method", function(p236)
+    vu235 = p236
+end)
+v237:Add("Teleport")
+v237:Add("Non-Teleport")
+
+local vu243 = v227:AddDropdown("⚪ Whitelist Players", function(p238)
+    if table.find(vu234, p238) then
+        for i, v242 in ipairs(vu234) do
+            if v242 == p238 then
+                table.remove(vu234, i)
+                break
+            end
+        end
+    else
+        table.insert(vu234, p238)
+    end
+end)
+
+for i, v254 in ipairs(vu172:GetPlayers()) do
+    if v254 ~= vu173 then
+        vu243:Add(v254.Name)
+    end
+end
+
+vu172.PlayerAdded:Connect(function(p255)
+    if p255 ~= vu173 then
+        vu243:Add(p255.Name)
+    end
+end)
+
+vu172.PlayerRemoving:Connect(function(p256)
+    if p256 ~= vu173 then
+        vu243:Remove(p256.Name)
+    end
+end)
+
+local vu257 = false
+v227:AddSwitch("💀 Kill All Players", function(p258)
+    vu257 = p258
+    if p258 then
+        task.spawn(function()
+            while vu257 do
+                for i, v263 in ipairs(vu172:GetPlayers()) do
+                    if v263 ~= vu173 and not table.find(vu234, v263.Name) then
+                        local v264 = v263.Character
+                        if v264 then
+                            v264 = v264:FindFirstChild("HumanoidRootPart")
+                        end
+                        local v265 = v226()
+                        if v265 and v264 then
+                            if vu235 == "Teleport" and vu173.Character and vu173.Character:FindFirstChild("HumanoidRootPart") then
+                                v264.CFrame = vu173.Character.HumanoidRootPart.CFrame * CFrame.new(math.random(-2, 2), 0, math.random(-2, 2))
+                            end
+                            v265:Activate()
+                            local v266 = vu173.Character
+                            if v266 then
+                                v266 = vu173.Character:FindFirstChild("RightHand")
+                            end
+                            local v267 = vu173.Character
+                            if v267 then
+                                v267 = vu173.Character:FindFirstChild("LeftHand")
+                            end
+                            if v266 and v267 then
+                                firetouchinterest(v266, v264, 1)
+                                firetouchinterest(v267, v264, 1)
+                                firetouchinterest(v266, v264, 0)
+                                firetouchinterest(v267, v264, 0)
+                            end
+                        end
+                    end
+                end
+                task.wait()
+            end
+        end)
+    end
+end)
+
+v227:AddSwitch("⚡ Fast Punch", function(p268)
+    local v269 = game.Players.LocalPlayer
+    local v270 = v269.Backpack:FindFirstChild("Punch")
+    local v271 = game.Workspace:FindFirstChild(v269.Name)
+    local v272
+    if v271 then
+        v272 = v271:FindFirstChild("Punch")
+    else
+        v272 = nil
+    end
+    if p268 then
+        if v270 and v270:FindFirstChild("attackTime") then
+            v270.attackTime.Value = 0
+        elseif v272 and v272:FindFirstChild("attackTime") then
+            v272.attackTime.Value = 0
+        end
+    elseif v270 and v270:FindFirstChild("attackTime") then
+        v270.attackTime.Value = 0.35
+    elseif v272 and v272:FindFirstChild("attackTime") then
+        v272.attackTime.Value = 0.35
+    end
+end):Set(false)
+
+v227:AddLabel("═════════════════════════════")
+AddRGBLabel(v227, "💀 KILL SINGLE PLAYER 💀")
+
+local vu273 = ""
+v227:AddTextBox("👤 Player Username or Display Name", function(p274)
+    vu273 = p274
+end, {
+    clear = false,
+    placeholder = "Type username or display name (partial is OK)"
+})
+v227:AddLabel("📝 EX: Kzenalt0 or PSL_Vekk (type PSL)")
+
+local vu275 = false
+v227:AddSwitch("💀 Auto Kill Player", function(p276)
+    vu275 = p276
+    if p276 then
+        task.spawn(function()
+            while vu275 do
+                local v277 = vu173
+                local v278 = vu223(vu273)
+                if v278 and (v278 ~= v277 and not table.find(vu234, v278.Name)) then
+                    local v279 = v278.Character
+                    if v279 then
+                        v279 = v279:FindFirstChild("HumanoidRootPart")
+                    end
+                    local v280 = v226()
+                    if v280 and v279 then
+                        if vu235 == "Teleport" and v277.Character and v277.Character:FindFirstChild("HumanoidRootPart") then
+                            v277.Character.HumanoidRootPart.CFrame = v279.CFrame * CFrame.new(0, 0, 3)
+                        end
+                        v280:Activate()
+                        local v281 = v277.Character
+                        if v281 then
+                            v281 = v277.Character:FindFirstChild("RightHand")
+                        end
+                        local v282 = v277.Character
+                        if v282 then
+                            v282 = v277.Character:FindFirstChild("LeftHand")
+                        end
+                        if v281 and v282 then
+                            firetouchinterest(v281, v279, 1)
+                            firetouchinterest(v282, v279, 1)
+                            firetouchinterest(v281, v279, 0)
+                            firetouchinterest(v282, v279, 0)
+                        end
+                        local v283 = v277:FindFirstChild("muscleEvent")
+                        if v283 then
+                            v283:FireServer("punch", "rightHand")
+                            v283:FireServer("punch", "leftHand")
+                        end
+                    end
+                end
+                task.wait()
+            end
+        end)
+    end
+end)
+
+v227:AddLabel("═════════════════════════════")
+AddRGBLabel(v227, "👁️ SPY PLAYER 👁️")
+
+local vu284 = ""
+local vu285 = false
+local vu286 = nil
+v227:AddTextBox("👁️ Spy enter Username or Display Name", function(p287)
+    vu284 = p287
+end, {
+    clear = false,
+    placeholder = "Type username or display name (partial is OK)"
+})
+
+v227:AddSwitch("👁️ Spy Player", function(p288)
+    vu285 = p288
+    local vu289 = workspace.CurrentCamera
+    if vu285 then
+        local function v291()
+            while vu285 do
+                local v290 = vu223(vu284)
+                if v290 and v290.Character and v290.Character:FindFirstChild("Humanoid") then
+                    vu289.CameraSubject = v290.Character.Humanoid
+                end
+                task.wait(0.25)
+            end
+        end
+        vu286 = vu289.CameraSubject
+        coroutine.wrap(v291)()
+    elseif vu286 then
+        workspace.CurrentCamera.CameraSubject = vu286
+    else
+        local v292 = vu173.Character
+        if v292 and v292:FindFirstChild("Humanoid") then
+            workspace.CurrentCamera.CameraSubject = v292.Humanoid
+        end
+    end
+end)
+v227:AddLabel("📝 EX: Kzenalt0 or PSL_Vekk (type PSL)")
+
+print("✅ PSL HUB SCRIPT LOADED! SCROLLABLE, RGB, & RESIZABLE! ✅")
