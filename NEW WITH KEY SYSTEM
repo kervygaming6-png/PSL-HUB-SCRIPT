@@ -129,7 +129,7 @@ repeat task.wait() until getgenv().KEY_PASSED == true
 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/YoshiroScripts/Wspwsp/refs/heads/main/Decode", true))()
 
-local window = library:AddWindow("DAN HUB | PUBLIC", {
+local window = library:AddWindow(" 💎 PSL HUB | 💲 PRIVATE", {
     main_color = Color3.fromRGB(0, 0, 225),
     min_size = Vector2.new(700, 700),
     can_resize = true,
