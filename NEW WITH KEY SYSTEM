@@ -5,7 +5,7 @@ local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
 local LocalPlayer = Players.LocalPlayer
 
-local CORRECT_KEY = "PSLONTOP"
+local CORRECT_KEY = "KEVONTOP"
 local GET_KEY_LINK = "https://discord.com/channels/1495324778205151283/1504369501515419748"
 
 getgenv().KEY_PASSED = false
@@ -36,7 +36,7 @@ end)
 local Title = Instance.new("TextLabel", Main)
 Title.Size = UDim2.new(1,0,0,50)
 Title.BackgroundTransparency = 1
-Title.Text = "🔒 PSL HUB KEY SYSTEM"
+Title.Text = "🔒 KEV KEY SYSTEM"
 Title.Font = Enum.Font.GothamBold
 Title.TextSize = 20
 Title.TextColor3 = Color3.fromRGB(255,255,255)
@@ -129,7 +129,7 @@ repeat task.wait() until getgenv().KEY_PASSED == true
 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/YoshiroScripts/Wspwsp/refs/heads/main/Decode", true))()
 
-local window = library:AddWindow(" 💎 PSL HUB | 💲 PRIVATE", {
+local window = library:AddWindow(" 💎 KEV •🔏 PRIVATE", {
     main_color = Color3.fromRGB(0, 0, 225),
     min_size = Vector2.new(700, 700),
     can_resize = true,
@@ -2053,7 +2053,7 @@ end)
 
 local Credits = window:AddTab("Credits")
 
-Credits:AddLabel(" PAID PSL HUB").TextSize = 30
+Credits:AddLabel(" PAID KEV SCRIPT ").TextSize = 30
 
 Credits:AddLabel(" ").TextSize = 30
 
