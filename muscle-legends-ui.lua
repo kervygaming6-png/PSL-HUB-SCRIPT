@@ -1,9 +1,11 @@
 -- ============================================
 -- MUSCLE LEGENDS RGB DRAGGABLE UI
+-- MOBILE OPTIMIZED FOR DELTA EXECUTOR
 -- ============================================
 
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
 
 -- ============================================
 -- UI CONFIGURATION
@@ -28,10 +30,14 @@ local UIConfig = {
 -- CREATE MAIN SCREEN GUI
 -- ============================================
 
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "MuscleLegendsUI"
 screenGui.ResetOnSpawn = false
-screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+screenGui.DisplayOrder = 999
+screenGui.Parent = playerGui
 
 -- ============================================
 -- GLOBAL VARIABLES
@@ -39,7 +45,6 @@ screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
 local isDragging = false
 local dragStart = nil
-local dragOffset = nil
 local isUIVisible = true
 local currentTab = 1
 local rgbHue = 0
@@ -61,30 +66,34 @@ end
 
 local minimizeButton = Instance.new("TextButton")
 minimizeButton.Name = "MinimizeButton"
-minimizeButton.Size = UDim2.new(0, 50, 0, 50)
-minimizeButton.Position = UDim2.new(0, 10, 0, 10)
+minimizeButton.Size = UDim2.new(0, 60, 0, 60)
+minimizeButton.Position = UDim2.new(0, 15, 0, 15)
 minimizeButton.BackgroundColor3 = getRGBColor(0)
 minimizeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-minimizeButton.TextSize = 20
+minimizeButton.TextSize = 28
 minimizeButton.Font = Enum.Font.GothamBold
 minimizeButton.Text = "◎"
+minimizeButton.BorderSizePixel = 0
 minimizeButton.Parent = screenGui
+minimizeButton.ZIndex = 1000
 
 local minimizeCorner = Instance.new("UICorner")
 minimizeCorner.CornerRadius = UDim.new(1, 0)
 minimizeCorner.Parent = minimizeButton
 
 -- ============================================
--- CREATE MAIN UI FRAME (HIDDEN BY DEFAULT)
+-- CREATE MAIN UI FRAME
 -- ============================================
 
 local mainFrame = Instance.new("Frame")
 mainFrame.Name = "MainFrame"
 mainFrame.Size = UDim2.new(0, UIConfig.Width, 0, UIConfig.Height)
-mainFrame.Position = UDim2.new(0, 100, 0, 100)
+mainFrame.Position = UDim2.new(0, 20, 0, 150)
 mainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 35)
 mainFrame.BorderSizePixel = 0
 mainFrame.Parent = screenGui
+mainFrame.ZIndex = 999
+mainFrame.Visible = true
 
 local mainCorner = Instance.new("UICorner")
 mainCorner.CornerRadius = UDim.new(0, 10)
@@ -100,6 +109,7 @@ topBar.Size = UDim2.new(1, 0, 0, 40)
 topBar.BackgroundColor3 = getRGBColor(0)
 topBar.BorderSizePixel = 0
 topBar.Parent = mainFrame
+topBar.ZIndex = 1001
 
 local topBarCorner = Instance.new("UICorner")
 topBarCorner.CornerRadius = UDim.new(0, 10)
@@ -111,10 +121,11 @@ titleLabel.Size = UDim2.new(1, -20, 1, 0)
 titleLabel.Position = UDim2.new(0, 10, 0, 0)
 titleLabel.BackgroundTransparency = 1
 titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-titleLabel.TextSize = 16
+titleLabel.TextSize = 14
 titleLabel.Font = Enum.Font.GothamBold
 titleLabel.Text = "MUSCLE LEGENDS"
 titleLabel.Parent = topBar
+titleLabel.ZIndex = 1001
 
 -- ============================================
 -- CREATE TAB BUTTONS
@@ -127,6 +138,7 @@ tabFrame.Position = UDim2.new(0, 0, 0, 40)
 tabFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 45)
 tabFrame.BorderSizePixel = 0
 tabFrame.Parent = mainFrame
+tabFrame.ZIndex = 999
 
 local tabLayout = Instance.new("UIGridLayout")
 tabLayout.CellSize = UDim2.new(1/UIConfig.TabCount, 0, 1, 0)
@@ -138,11 +150,12 @@ for i = 1, UIConfig.TabCount do
     tabButton.Name = "Tab" .. i
     tabButton.BackgroundColor3 = (i == 1) and getRGBColor(0) or Color3.fromRGB(45, 45, 55)
     tabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-    tabButton.TextSize = 10
+    tabButton.TextSize = 9
     tabButton.Font = Enum.Font.GothamBold
     tabButton.Text = UIConfig.Tabs[i]
     tabButton.BorderSizePixel = 0
     tabButton.Parent = tabFrame
+    tabButton.ZIndex = 999
     
     tabButton.MouseButton1Click:Connect(function()
         currentTab = i
@@ -166,6 +179,7 @@ contentFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 35)
 contentFrame.BorderSizePixel = 0
 contentFrame.ScrollBarThickness = 8
 contentFrame.Parent = mainFrame
+contentFrame.ZIndex = 999
 
 local contentLayout = Instance.new("UIListLayout")
 contentLayout.Padding = UDim.new(0, 10)
@@ -261,6 +275,7 @@ local function createContent()
         contentItem.BackgroundColor3 = Color3.fromRGB(40, 40, 50)
         contentItem.BorderSizePixel = 0
         contentItem.Parent = contentFrame
+        contentItem.ZIndex = 999
         
         local contentCorner = Instance.new("UICorner")
         contentCorner.CornerRadius = UDim.new(0, 8)
@@ -272,11 +287,12 @@ local function createContent()
         titleText.Position = UDim2.new(0, 10, 0, 5)
         titleText.BackgroundTransparency = 1
         titleText.TextColor3 = Color3.fromRGB(255, 255, 255)
-        titleText.TextSize = 12
+        titleText.TextSize = 11
         titleText.Font = Enum.Font.GothamBold
         titleText.Text = content.title
         titleText.TextXAlignment = Enum.TextXAlignment.Left
         titleText.Parent = contentItem
+        titleText.ZIndex = 999
         
         local descText = Instance.new("TextLabel")
         descText.Name = "Description"
@@ -284,25 +300,27 @@ local function createContent()
         descText.Position = UDim2.new(0, 10, 0, 25)
         descText.BackgroundTransparency = 1
         descText.TextColor3 = Color3.fromRGB(200, 200, 200)
-        descText.TextSize = 11
+        descText.TextSize = 10
         descText.Font = Enum.Font.Gotham
         descText.Text = content.description
         descText.TextXAlignment = Enum.TextXAlignment.Left
         descText.TextWrapped = true
         descText.Parent = contentItem
+        descText.ZIndex = 999
         
         if content.type == "toggle" then
             local toggleButton = Instance.new("TextButton")
             toggleButton.Name = "ToggleButton"
-            toggleButton.Size = UDim2.new(0, 40, 0, 20)
-            toggleButton.Position = UDim2.new(1, -55, 0, 20)
+            toggleButton.Size = UDim2.new(0, 45, 0, 20)
+            toggleButton.Position = UDim2.new(1, -60, 0, 20)
             toggleButton.BackgroundColor3 = Color3.fromRGB(100, 200, 100)
             toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-            toggleButton.TextSize = 10
+            toggleButton.TextSize = 9
             toggleButton.Font = Enum.Font.GothamBold
             toggleButton.Text = "ON"
             toggleButton.BorderSizePixel = 0
             toggleButton.Parent = contentItem
+            toggleButton.ZIndex = 999
             
             local toggleCorner = Instance.new("UICorner")
             toggleCorner.CornerRadius = UDim.new(0, 5)
@@ -321,10 +339,11 @@ local function createContent()
             local sliderFrame = Instance.new("Frame")
             sliderFrame.Name = "SliderFrame"
             sliderFrame.Size = UDim2.new(0, 60, 0, 5)
-            sliderFrame.Position = UDim2.new(1, -65, 0, 22)
+            sliderFrame.Position = UDim2.new(1, -70, 0, 22)
             sliderFrame.BackgroundColor3 = Color3.fromRGB(60, 60, 70)
             sliderFrame.BorderSizePixel = 0
             sliderFrame.Parent = contentItem
+            sliderFrame.ZIndex = 999
             
             local sliderBar = Instance.new("Frame")
             sliderBar.Name = "SliderBar"
@@ -332,6 +351,7 @@ local function createContent()
             sliderBar.BackgroundColor3 = getRGBColor(rgbHue)
             sliderBar.BorderSizePixel = 0
             sliderBar.Parent = sliderFrame
+            sliderBar.ZIndex = 999
         end
     end
     
@@ -341,40 +361,45 @@ end
 createContent()
 
 -- ============================================
--- MOUSE DRAGGING
+-- DRAGGING SYSTEM (IMPROVED FOR MOBILE)
 -- ============================================
 
-topBar.MouseButton1Down:Connect(function(x, y)
-    isDragging = true
-    dragStart = Vector2.new(x, y)
-    dragOffset = mainFrame.Position - UDim2.new(0, x, 0, y)
+topBar.InputBegan:Connect(function(input, gameProcessed)
+    if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
+        isDragging = true
+        dragStart = input.Position
+    end
 end)
 
-UserInputService.InputEnded:Connect(function(input, gameProcessed)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+topBar.InputEnded:Connect(function(input, gameProcessed)
+    if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
         isDragging = false
     end
 end)
 
 -- ============================================
--- UPDATE MOUSE POSITION FOR DRAGGING
+-- DRAG UPDATE
 -- ============================================
 
 UserInputService.InputChanged:Connect(function(input, gameProcessed)
-    if isDragging and input.UserInputType == Enum.UserInputType.MouseMovement then
-        local mousePos = UserInputService:GetMouseLocation()
-        mainFrame.Position = UDim2.new(0, mousePos.X - mainFrame.AbsoluteSize.X/2, 0, mousePos.Y - 20)
+    if isDragging and dragStart and (input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseMovement) then
+        local delta = input.Position - dragStart
+        local newPosition = mainFrame.Position + UDim2.new(0, delta.X, 0, delta.Y)
+        mainFrame.Position = newPosition
+        dragStart = input.Position
     end
 end)
 
 -- ============================================
--- MINIMIZE/SHOW BUTTON
+-- MINIMIZE/SHOW BUTTON (IMPROVED)
 -- ============================================
 
-minimizeButton.MouseButton1Click:Connect(function()
-    isUIVisible = not isUIVisible
-    mainFrame.Visible = isUIVisible
-    minimizeButton.Text = isUIVisible and "◎" or "○"
+minimizeButton.InputBegan:Connect(function(input, gameProcessed)
+    if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
+        isUIVisible = not isUIVisible
+        mainFrame.Visible = isUIVisible
+        minimizeButton.Text = isUIVisible and "◎" or "○"
+    end
 end)
 
 -- ============================================
@@ -393,13 +418,14 @@ RunService.RenderStepped:Connect(function()
     tabs[currentTab].BackgroundColor3 = rgbColor
     
     -- Update slider color
-    local sliderBar = contentFrame:FindFirstChild(tabContent[(currentTab - 1) * 2 + 1].title)
-    if sliderBar then
-        local slider = sliderBar:FindFirstChild("SliderFrame")
-        if slider then
-            local bar = slider:FindFirstChild("SliderBar")
-            if bar then
-                bar.BackgroundColor3 = rgbColor
+    for _, child in pairs(contentFrame:GetChildren()) do
+        if child:IsA("Frame") then
+            local slider = child:FindFirstChild("SliderFrame")
+            if slider then
+                local bar = slider:FindFirstChild("SliderBar")
+                if bar then
+                    bar.BackgroundColor3 = rgbColor
+                end
             end
         end
     end
@@ -418,5 +444,6 @@ RunService.Heartbeat:Connect(function()
 end)
 
 print("✓ Muscle Legends UI Loaded Successfully!")
-print("✓ Click the RGB circle to show/hide the UI")
-print("✓ Click and drag the top bar to move the UI")
+print("✓ Tap the RGB circle to show/hide the UI")
+print("✓ Drag the top bar to move the UI")
+print("✓ Mobile optimized for Delta executor")
