@@ -1,11 +1,12 @@
 -- ============================================
--- MUSCLE LEGENDS RGB DRAGGABLE UI
+-- MUSCLE LEGENDS RGB DRAGGABLE UI WITH REAL FEATURES
 -- MOBILE OPTIMIZED FOR DELTA EXECUTOR
 -- ============================================
 
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 -- ============================================
 -- UI CONFIGURATION
@@ -19,10 +20,10 @@ local UIConfig = {
     Tabs = {
         "Farming",
         "Strength", 
-        "Chest",
-        "Equipment",
-        "Settings",
-        "Credits"
+        "Killing",
+        "Rebirth",
+        "Eggs",
+        "Settings"
     }
 }
 
@@ -48,6 +49,21 @@ local dragStart = nil
 local isUIVisible = true
 local currentTab = 1
 local rgbHue = 0
+
+-- Feature toggles
+local autoFarmEnabled = false
+local autoWeightEnabled = false
+local autoPushupsEnabled = false
+local autoHandstandEnabled = false
+local autoSitupsEnabled = false
+local autoEatEggEnabled = false
+local autoPunchEnabled = false
+local fastToolsEnabled = false
+local autoGoodKarmaKillEnabled = false
+local autoKillAllEnabled = false
+local autoRebirthEnabled = false
+local autoSizeEnabled = false
+local autoOpenEggsEnabled = false
 
 -- ============================================
 -- RGB COLOR FUNCTION
@@ -186,74 +202,394 @@ contentLayout.Padding = UDim.new(0, 10)
 contentLayout.Parent = contentFrame
 
 -- ============================================
--- TAB CONTENT DATA
+-- FARMING FUNCTIONS
 -- ============================================
 
-local tabContent = {
-    {
-        title = "Auto Farm",
-        description = "Enable/Disable auto farming",
-        type = "toggle"
-    },
-    {
-        title = "Farm Speed",
-        description = "Adjust farming speed",
-        type = "slider"
-    },
-    {
-        title = "Auto Strength",
-        description = "Auto upgrade strength",
-        type = "toggle"
-    },
-    {
-        title = "Strength Level",
-        description = "Current level: 50",
-        type = "label"
-    },
-    {
-        title = "Auto Chest",
-        description = "Auto upgrade chest",
-        type = "toggle"
-    },
-    {
-        title = "Chest Level",
-        description = "Current level: 45",
-        type = "label"
-    },
-    {
-        title = "Auto Equipment",
-        description = "Auto equip items",
-        type = "toggle"
-    },
-    {
-        title = "Equipment Grade",
-        description = "Legendary",
-        type = "label"
-    },
-    {
-        title = "Animation Speed",
-        description = "Speed: 1.0x",
-        type = "slider"
-    },
-    {
-        title = "Debug Mode",
-        description = "Enable debugging",
-        type = "toggle"
-    },
-    {
-        title = "Creator",
-        description = "Made by Kev",
-        type = "label"
-    },
-    {
-        title = "Version",
-        description = "v1.0.0",
-        type = "label"
-    }
-}
+local function equipTool(toolName)
+    local character = player.Character
+    local backpack = player.Backpack
+    
+    if not character or not backpack then return end
+    
+    local tool = backpack:FindFirstChild(toolName)
+    if tool then
+        character.Humanoid:EquipTool(tool)
+    end
+end
+
+local function fireRep()
+    if player:FindFirstChild("muscleEvent") then
+        player.muscleEvent:FireServer("rep")
+    end
+end
 
 -- ============================================
--- POPULATE CONTENT
+-- AUTO FARM LOOP
+-- ============================================
+
+task.spawn(function()
+    while true do
+        if autoFarmEnabled then
+            fireRep()
+            task.wait(0.2)
+        else
+            task.wait(0.5)
+        end
+    end
+end)
+
+-- ============================================
+-- AUTO WEIGHT LOOP
+-- ============================================
+
+task.spawn(function()
+    while true do
+        if autoWeightEnabled then
+            equipTool("Weight")
+            fireRep()
+            task.wait(0.3)
+        else
+            task.wait(0.5)
+        end
+    end
+end)
+
+-- ============================================
+-- AUTO PUSHUPS LOOP
+-- ============================================
+
+task.spawn(function()
+    while true do
+        if autoPushupsEnabled then
+            equipTool("Pushups")
+            fireRep()
+            task.wait(0.3)
+        else
+            task.wait(0.5)
+        end
+    end
+end)
+
+-- ============================================
+-- AUTO HANDSTAND LOOP
+-- ============================================
+
+task.spawn(function()
+    while true do
+        if autoHandstandEnabled then
+            equipTool("Handstand")
+            fireRep()
+            task.wait(0.3)
+        else
+            task.wait(0.5)
+        end
+    end
+end)
+
+-- ============================================
+-- AUTO SITUPS LOOP
+-- ============================================
+
+task.spawn(function()
+    while true do
+        if autoSitupsEnabled then
+            equipTool("Situps")
+            fireRep()
+            task.wait(0.3)
+        else
+            task.wait(0.5)
+        end
+    end
+end)
+
+-- ============================================
+-- AUTO EAT EGG LOOP
+-- ============================================
+
+task.spawn(function()
+    while true do
+        if autoEatEggEnabled then
+            local backpack = player.Backpack
+            local character = player.Character
+            
+            if character and backpack then
+                local egg = backpack:FindFirstChild("Protein Egg")
+                if egg then
+                    egg.Parent = character
+                    pcall(function()
+                        egg:Activate()
+                    end)
+                end
+            end
+            task.wait(0.5)
+        else
+            task.wait(0.5)
+        end
+    end
+end)
+
+-- ============================================
+-- AUTO PUNCH LOOP
+-- ============================================
+
+task.spawn(function()
+    while true do
+        if autoPunchEnabled then
+            equipTool("Punch")
+            if player:FindFirstChild("muscleEvent") then
+                player.muscleEvent:FireServer("punch", "rightHand")
+                player.muscleEvent:FireServer("punch", "leftHand")
+            end
+            task.wait(0.1)
+        else
+            task.wait(0.5)
+        end
+    end
+end)
+
+-- ============================================
+-- FAST TOOLS LOOP
+-- ============================================
+
+task.spawn(function()
+    while true do
+        if fastToolsEnabled then
+            local backpack = player.Backpack
+            local character = player.Character
+            
+            local tools = {
+                {"Punch", "attackTime", 0},
+                {"Pushups", "repTime", 0},
+                {"Weight", "repTime", 0},
+                {"Handstand", "repTime", 0},
+                {"Situps", "repTime", 0}
+            }
+            
+            for _, toolInfo in ipairs(tools) do
+                local tool = backpack:FindFirstChild(toolInfo[1])
+                if tool and tool:FindFirstChild(toolInfo[2]) then
+                    tool[toolInfo[2]].Value = toolInfo[3]
+                end
+            end
+            
+            task.wait(1)
+        else
+            task.wait(0.5)
+        end
+    end
+end)
+
+-- ============================================
+-- AUTO GOOD KARMA KILL LOOP
+-- ============================================
+
+task.spawn(function()
+    while true do
+        if autoGoodKarmaKillEnabled then
+            local character = player.Character
+            if character then
+                local rightHand = character:FindFirstChild("RightHand")
+                local leftHand = character:FindFirstChild("LeftHand")
+                
+                if rightHand and leftHand then
+                    for _, target in ipairs(Players:GetPlayers()) do
+                        if target ~= player then
+                            local evilKarma = target:FindFirstChild("evilKarma")
+                            local goodKarma = target:FindFirstChild("goodKarma")
+                            
+                            if evilKarma and goodKarma and evilKarma.Value > goodKarma.Value then
+                                local targetChar = target.Character
+                                if targetChar then
+                                    local rootPart = targetChar:FindFirstChild("HumanoidRootPart")
+                                    if rootPart then
+                                        firetouchinterest(rightHand, rootPart, 1)
+                                        firetouchinterest(leftHand, rootPart, 1)
+                                        firetouchinterest(rightHand, rootPart, 0)
+                                        firetouchinterest(leftHand, rootPart, 0)
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+            task.wait(0.2)
+        else
+            task.wait(0.5)
+        end
+    end
+end)
+
+-- ============================================
+-- AUTO KILL ALL LOOP
+-- ============================================
+
+task.spawn(function()
+    while true do
+        if autoKillAllEnabled then
+            local character = player.Character
+            if character then
+                local rightHand = character:FindFirstChild("RightHand")
+                local leftHand = character:FindFirstChild("LeftHand")
+                
+                if rightHand and leftHand then
+                    for _, target in ipairs(Players:GetPlayers()) do
+                        if target ~= player then
+                            local targetChar = target.Character
+                            if targetChar then
+                                local rootPart = targetChar:FindFirstChild("HumanoidRootPart")
+                                if rootPart then
+                                    firetouchinterest(rightHand, rootPart, 1)
+                                    firetouchinterest(leftHand, rootPart, 1)
+                                    firetouchinterest(rightHand, rootPart, 0)
+                                    firetouchinterest(leftHand, rootPart, 0)
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+            task.wait(0.2)
+        else
+            task.wait(0.5)
+        end
+    end
+end)
+
+-- ============================================
+-- AUTO REBIRTH LOOP
+-- ============================================
+
+task.spawn(function()
+    while true do
+        if autoRebirthEnabled then
+            pcall(function()
+                ReplicatedStorage.rEvents.rebirthRemote:InvokeServer("rebirthRequest")
+            end)
+            task.wait(0.1)
+        else
+            task.wait(0.5)
+        end
+    end
+end)
+
+-- ============================================
+-- AUTO SIZE LOOP
+-- ============================================
+
+task.spawn(function()
+    while true do
+        if autoSizeEnabled then
+            pcall(function()
+                ReplicatedStorage.rEvents.changeSpeedSizeRemote:InvokeServer("changeSize", 1)
+            end)
+            task.wait(0.1)
+        else
+            task.wait(0.5)
+        end
+    end
+end)
+
+-- ============================================
+-- AUTO OPEN EGGS LOOP
+-- ============================================
+
+task.spawn(function()
+    while true do
+        if autoOpenEggsEnabled then
+            pcall(function()
+                local eggShop = ReplicatedStorage:FindFirstChild("cPetShopFolder")
+                if eggShop then
+                    local eggs = eggShop:GetChildren()
+                    if #eggs > 0 then
+                        local randomEgg = eggs[math.random(1, #eggs)]
+                        ReplicatedStorage.cPetShopRemote:InvokeServer(randomEgg)
+                    end
+                end
+            end)
+            task.wait(0.5)
+        else
+            task.wait(0.5)
+        end
+    end
+end)
+
+-- ============================================
+-- CREATE CONTENT FOR EACH TAB
+-- ============================================
+
+local function createToggle(parent, title, description, callback)
+    local contentItem = Instance.new("Frame")
+    contentItem.Name = title
+    contentItem.Size = UDim2.new(1, -20, 0, 60)
+    contentItem.BackgroundColor3 = Color3.fromRGB(40, 40, 50)
+    contentItem.BorderSizePixel = 0
+    contentItem.Parent = parent
+    contentItem.ZIndex = 999
+    
+    local contentCorner = Instance.new("UICorner")
+    contentCorner.CornerRadius = UDim.new(0, 8)
+    contentCorner.Parent = contentItem
+    
+    local titleText = Instance.new("TextLabel")
+    titleText.Name = "Title"
+    titleText.Size = UDim2.new(1, -20, 0, 20)
+    titleText.Position = UDim2.new(0, 10, 0, 5)
+    titleText.BackgroundTransparency = 1
+    titleText.TextColor3 = Color3.fromRGB(255, 255, 255)
+    titleText.TextSize = 11
+    titleText.Font = Enum.Font.GothamBold
+    titleText.Text = title
+    titleText.TextXAlignment = Enum.TextXAlignment.Left
+    titleText.Parent = contentItem
+    titleText.ZIndex = 999
+    
+    local descText = Instance.new("TextLabel")
+    descText.Name = "Description"
+    descText.Size = UDim2.new(1, -20, 0, 30)
+    descText.Position = UDim2.new(0, 10, 0, 25)
+    descText.BackgroundTransparency = 1
+    descText.TextColor3 = Color3.fromRGB(200, 200, 200)
+    descText.TextSize = 10
+    descText.Font = Enum.Font.Gotham
+    descText.Text = description
+    descText.TextXAlignment = Enum.TextXAlignment.Left
+    descText.TextWrapped = true
+    descText.Parent = contentItem
+    descText.ZIndex = 999
+    
+    local toggleButton = Instance.new("TextButton")
+    toggleButton.Name = "ToggleButton"
+    toggleButton.Size = UDim2.new(0, 45, 0, 20)
+    toggleButton.Position = UDim2.new(1, -60, 0, 20)
+    toggleButton.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+    toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    toggleButton.TextSize = 9
+    toggleButton.Font = Enum.Font.GothamBold
+    toggleButton.Text = "OFF"
+    toggleButton.BorderSizePixel = 0
+    toggleButton.Parent = contentItem
+    toggleButton.ZIndex = 999
+    
+    local toggleCorner = Instance.new("UICorner")
+    toggleCorner.CornerRadius = UDim.new(0, 5)
+    toggleCorner.Parent = toggleButton
+    
+    toggleButton.MouseButton1Click:Connect(function()
+        if toggleButton.Text == "OFF" then
+            toggleButton.Text = "ON"
+            toggleButton.BackgroundColor3 = Color3.fromRGB(100, 200, 100)
+            callback(true)
+        else
+            toggleButton.Text = "OFF"
+            toggleButton.BackgroundColor3 = Color3.fromRGB(200, 100, 100)
+            callback(false)
+        end
+    end)
+end
+
+-- ============================================
+-- POPULATE CONTENT BASED ON TAB
 -- ============================================
 
 local function createContent()
@@ -264,95 +600,87 @@ local function createContent()
         end
     end
     
-    -- Add content based on current tab
-    local startIdx = (currentTab - 1) * 2 + 1
-    for i = startIdx, math.min(startIdx + 1, #tabContent) do
-        local content = tabContent[i]
+    -- Tab 1: FARMING
+    if currentTab == 1 then
+        createToggle(contentFrame, "Auto Farm", "Enable/Disable auto farming", function(state)
+            autoFarmEnabled = state
+        end)
         
-        local contentItem = Instance.new("Frame")
-        contentItem.Name = content.title
-        contentItem.Size = UDim2.new(1, -20, 0, 60)
-        contentItem.BackgroundColor3 = Color3.fromRGB(40, 40, 50)
-        contentItem.BorderSizePixel = 0
-        contentItem.Parent = contentFrame
-        contentItem.ZIndex = 999
+        createToggle(contentFrame, "Auto Weight", "Auto equip & farm weight", function(state)
+            autoWeightEnabled = state
+        end)
         
-        local contentCorner = Instance.new("UICorner")
-        contentCorner.CornerRadius = UDim.new(0, 8)
-        contentCorner.Parent = contentItem
+        createToggle(contentFrame, "Auto Pushups", "Auto equip & farm pushups", function(state)
+            autoPushupsEnabled = state
+        end)
         
-        local titleText = Instance.new("TextLabel")
-        titleText.Name = "Title"
-        titleText.Size = UDim2.new(1, -20, 0, 20)
-        titleText.Position = UDim2.new(0, 10, 0, 5)
-        titleText.BackgroundTransparency = 1
-        titleText.TextColor3 = Color3.fromRGB(255, 255, 255)
-        titleText.TextSize = 11
-        titleText.Font = Enum.Font.GothamBold
-        titleText.Text = content.title
-        titleText.TextXAlignment = Enum.TextXAlignment.Left
-        titleText.Parent = contentItem
-        titleText.ZIndex = 999
+        createToggle(contentFrame, "Auto Handstand", "Auto equip & farm handstand", function(state)
+            autoHandstandEnabled = state
+        end)
         
-        local descText = Instance.new("TextLabel")
-        descText.Name = "Description"
-        descText.Size = UDim2.new(1, -20, 0, 30)
-        descText.Position = UDim2.new(0, 10, 0, 25)
-        descText.BackgroundTransparency = 1
-        descText.TextColor3 = Color3.fromRGB(200, 200, 200)
-        descText.TextSize = 10
-        descText.Font = Enum.Font.Gotham
-        descText.Text = content.description
-        descText.TextXAlignment = Enum.TextXAlignment.Left
-        descText.TextWrapped = true
-        descText.Parent = contentItem
-        descText.ZIndex = 999
+        createToggle(contentFrame, "Auto Situps", "Auto equip & farm situps", function(state)
+            autoSitupsEnabled = state
+        end)
         
-        if content.type == "toggle" then
-            local toggleButton = Instance.new("TextButton")
-            toggleButton.Name = "ToggleButton"
-            toggleButton.Size = UDim2.new(0, 45, 0, 20)
-            toggleButton.Position = UDim2.new(1, -60, 0, 20)
-            toggleButton.BackgroundColor3 = Color3.fromRGB(100, 200, 100)
-            toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-            toggleButton.TextSize = 9
-            toggleButton.Font = Enum.Font.GothamBold
-            toggleButton.Text = "ON"
-            toggleButton.BorderSizePixel = 0
-            toggleButton.Parent = contentItem
-            toggleButton.ZIndex = 999
-            
-            local toggleCorner = Instance.new("UICorner")
-            toggleCorner.CornerRadius = UDim.new(0, 5)
-            toggleCorner.Parent = toggleButton
-            
-            toggleButton.MouseButton1Click:Connect(function()
-                if toggleButton.Text == "ON" then
-                    toggleButton.Text = "OFF"
-                    toggleButton.BackgroundColor3 = Color3.fromRGB(200, 100, 100)
-                else
-                    toggleButton.Text = "ON"
-                    toggleButton.BackgroundColor3 = Color3.fromRGB(100, 200, 100)
-                end
-            end)
-        elseif content.type == "slider" then
-            local sliderFrame = Instance.new("Frame")
-            sliderFrame.Name = "SliderFrame"
-            sliderFrame.Size = UDim2.new(0, 60, 0, 5)
-            sliderFrame.Position = UDim2.new(1, -70, 0, 22)
-            sliderFrame.BackgroundColor3 = Color3.fromRGB(60, 60, 70)
-            sliderFrame.BorderSizePixel = 0
-            sliderFrame.Parent = contentItem
-            sliderFrame.ZIndex = 999
-            
-            local sliderBar = Instance.new("Frame")
-            sliderBar.Name = "SliderBar"
-            sliderBar.Size = UDim2.new(0.5, 0, 1, 0)
-            sliderBar.BackgroundColor3 = getRGBColor(rgbHue)
-            sliderBar.BorderSizePixel = 0
-            sliderBar.Parent = sliderFrame
-            sliderBar.ZIndex = 999
-        end
+        createToggle(contentFrame, "Auto Eat Egg", "Auto eat Protein Eggs", function(state)
+            autoEatEggEnabled = state
+        end)
+    
+    -- Tab 2: STRENGTH
+    elseif currentTab == 2 then
+        createToggle(contentFrame, "Auto Punch", "Auto punch fast", function(state)
+            autoPunchEnabled = state
+        end)
+        
+        createToggle(contentFrame, "Fast Tools", "Speed up all tools to 0 delay", function(state)
+            fastToolsEnabled = state
+        end)
+    
+    -- Tab 3: KILLING
+    elseif currentTab == 3 then
+        createToggle(contentFrame, "Good Karma Kill", "Kill evil karma players only", function(state)
+            autoGoodKarmaKillEnabled = state
+        end)
+        
+        createToggle(contentFrame, "Kill All", "Attack all players", function(state)
+            autoKillAllEnabled = state
+        end)
+    
+    -- Tab 4: REBIRTH
+    elseif currentTab == 4 then
+        createToggle(contentFrame, "Auto Rebirth", "Rebirth infinitely", function(state)
+            autoRebirthEnabled = state
+        end)
+        
+        createToggle(contentFrame, "Auto Size 1", "Auto set size to 1", function(state)
+            autoSizeEnabled = state
+        end)
+    
+    -- Tab 5: EGGS
+    elseif currentTab == 5 then
+        createToggle(contentFrame, "Auto Open Eggs", "Auto open random eggs", function(state)
+            autoOpenEggsEnabled = state
+        end)
+    
+    -- Tab 6: SETTINGS
+    elseif currentTab == 6 then
+        local settingsLabel = Instance.new("TextLabel")
+        settingsLabel.Name = "SettingsLabel"
+        settingsLabel.Size = UDim2.new(1, -20, 0, 120)
+        settingsLabel.BackgroundColor3 = Color3.fromRGB(40, 40, 50)
+        settingsLabel.BorderSizePixel = 0
+        settingsLabel.Parent = contentFrame
+        settingsLabel.ZIndex = 999
+        
+        local settingsCorner = Instance.new("UICorner")
+        settingsCorner.CornerRadius = UDim.new(0, 8)
+        settingsCorner.Parent = settingsLabel
+        
+        settingsLabel.Text = "🔷 MUSCLE LEGENDS UI\n\nVersion: v2.0.0\n\nCreator: Kev\n\nAll tabs fully working!\nClick circle to hide/show"
+        settingsLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+        settingsLabel.TextSize = 11
+        settingsLabel.Font = Enum.Font.Gotham
+        settingsLabel.TextWrapped = true
     end
     
     contentFrame.CanvasSize = UDim2.new(0, 0, 0, contentLayout.AbsoluteContentSize.Y)
@@ -416,19 +744,6 @@ RunService.RenderStepped:Connect(function()
     topBar.BackgroundColor3 = rgbColor
     minimizeButton.BackgroundColor3 = rgbColor
     tabs[currentTab].BackgroundColor3 = rgbColor
-    
-    -- Update slider color
-    for _, child in pairs(contentFrame:GetChildren()) do
-        if child:IsA("Frame") then
-            local slider = child:FindFirstChild("SliderFrame")
-            if slider then
-                local bar = slider:FindFirstChild("SliderBar")
-                if bar then
-                    bar.BackgroundColor3 = rgbColor
-                end
-            end
-        end
-    end
 end)
 
 -- ============================================
@@ -443,7 +758,7 @@ RunService.Heartbeat:Connect(function()
     end
 end)
 
-print("✓ Muscle Legends UI Loaded Successfully!")
-print("✓ Tap the RGB circle to show/hide the UI")
-print("✓ Drag the top bar to move the UI")
-print("✓ Mobile optimized for Delta executor")
+print("✓ Muscle Legends UI v2.0.0 Loaded!")
+print("✓ Click the RGB circle to show/hide")
+print("✓ Drag the top bar to move")
+print("✓ All 6 tabs with real features ready!")
