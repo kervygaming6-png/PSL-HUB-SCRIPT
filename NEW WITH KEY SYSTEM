@@ -127,7 +127,7 @@ end)
 
 repeat task.wait() until getgenv().KEY_PASSED == true
 
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/YoshiroScripts/Wspwsp/refs/heads/main/Decode", true))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/kervygaming6-png/PSL-HUB-SCRIPT/refs/heads/main/local%20lib%20for%20with%20key%20system", true))()
 
 local window = library:AddWindow(" 💎 KEV •🔏 PRIVATE", {
     main_color = Color3.fromRGB(0, 0, 225),
