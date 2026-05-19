@@ -1,3 +1,133 @@
+repeat task.wait() until game:IsLoaded()
+
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
+
+local CORRECT_KEY = "ASTRALX"
+local GET_KEY_LINK = "https://discord.gg/pdHZy578F"
+
+getgenv().KEY_PASSED = false
+
+local Gui = Instance.new("ScreenGui", game.CoreGui)
+Gui.Name = "SL_RGB_KEY"
+Gui.ResetOnSpawn = false
+
+local Main = Instance.new("Frame", Gui)
+Main.Size = UDim2.new(0, 380, 0, 240)
+Main.Position = UDim2.new(0.5, -190, 0.5, -120)
+Main.BackgroundColor3 = Color3.fromRGB(15,15,15)
+Main.BorderSizePixel = 0
+Main.Active = true
+Main.Draggable = true
+
+Instance.new("UICorner", Main).CornerRadius = UDim.new(0, 14)
+
+local Glow = Instance.new("UIStroke", Main)
+Glow.Thickness = 2
+
+local hue = 0
+RunService.RenderStepped:Connect(function()
+    hue = (hue + 0.002) % 1
+    Glow.Color = Color3.fromHSV(hue, 1, 1)
+end)
+
+local Title = Instance.new("TextLabel", Main)
+Title.Size = UDim2.new(1,0,0,50)
+Title.BackgroundTransparency = 1
+Title.Text = "🔒 ASTRAL HUB X KEY SYSTEM"
+Title.Font = Enum.Font.GothamBold
+Title.TextSize = 20
+Title.TextColor3 = Color3.fromRGB(255,255,255)
+
+local Box = Instance.new("TextBox", Main)
+Box.Size = UDim2.new(0.85,0,0,42)
+Box.Position = UDim2.new(0.075,0,0.35,0)
+Box.PlaceholderText = "ENTER KEY"
+Box.Text = ""
+Box.Font = Enum.Font.Gotham
+Box.TextSize = 14
+Box.BackgroundColor3 = Color3.fromRGB(30,30,30)
+Box.TextColor3 = Color3.fromRGB(255,255,255)
+Box.ClearTextOnFocus = false
+Instance.new("UICorner", Box).CornerRadius = UDim.new(0,10)
+
+local Verify = Instance.new("TextButton", Main)
+Verify.Size = UDim2.new(0.4,0,0,38)
+Verify.Position = UDim2.new(0.075,0,0.65,0)
+Verify.Text = "VERIFY"
+Verify.Font = Enum.Font.GothamBold
+Verify.TextSize = 14
+Verify.TextColor3 = Color3.fromRGB(255,255,255)
+Verify.BackgroundColor3 = Color3.fromRGB(40,40,40)
+Instance.new("UICorner", Verify).CornerRadius = UDim.new(0,10)
+
+local GetKey = Instance.new("TextButton", Main)
+GetKey.Size = UDim2.new(0.4,0,0,38)
+GetKey.Position = UDim2.new(0.525,0,0.65,0)
+GetKey.Text = "GET KEY"
+GetKey.Font = Enum.Font.GothamBold
+GetKey.TextSize = 14
+GetKey.TextColor3 = Color3.fromRGB(255,255,255)
+GetKey.BackgroundColor3 = Color3.fromRGB(40,40,40)
+Instance.new("UICorner", GetKey).CornerRadius = UDim.new(0,10)
+
+for _,btn in pairs({Verify, GetKey}) do
+    btn.MouseEnter:Connect(function()
+        TweenService:Create(btn, TweenInfo.new(0.2), {
+            BackgroundColor3 = Color3.fromRGB(70,70,70)
+        }):Play()
+    end)
+    btn.MouseLeave:Connect(function()
+        TweenService:Create(btn, TweenInfo.new(0.2), {
+            BackgroundColor3 = Color3.fromRGB(40,40,40)
+        }):Play()
+    end)
+end
+
+local function Shake()
+    for i = 1,8 do
+        Main.Position += UDim2.new(0, (i%2==0 and -6 or 6),0,0)
+        task.wait(0.02)
+    end
+end
+
+Verify.MouseButton1Click:Connect(function()
+    if Box.Text == CORRECT_KEY then
+        getgenv().KEY_PASSED = true
+
+        TweenService:Create(Main, TweenInfo.new(0.5), {
+            BackgroundTransparency = 1
+        }):Play()
+
+        for _,v in pairs(Main:GetChildren()) do
+            if v:IsA("TextLabel") or v:IsA("TextButton") or v:IsA("TextBox") then
+                TweenService:Create(v, TweenInfo.new(0.5), {
+                    TextTransparency = 1,
+                    BackgroundTransparency = 1
+                }):Play()
+            end
+        end
+
+        task.wait(0.6)
+        Gui:Destroy()
+    else
+        Box.Text = ""
+        Box.PlaceholderText = "WRONG KEY!"
+        Shake()
+    end
+end)
+
+GetKey.MouseButton1Click:Connect(function()
+    if setclipboard then
+        setclipboard(GET_KEY_LINK)
+    end
+end)
+
+repeat task.wait() until getgenv().KEY_PASSED == true
+
+
 local v0 = loadstring(game:HttpGet("https://raw.githubusercontent.com/memejames/elerium-v2-ui-library/refs/heads/main/Library", true))()
 local v1 = v0:AddWindow("PAID PSL HUB 💎", {
     main_color = Color3.fromRGB(139, 0, 0),
