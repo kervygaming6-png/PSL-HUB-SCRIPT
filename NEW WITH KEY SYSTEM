@@ -5,8 +5,8 @@ local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
 local LocalPlayer = Players.LocalPlayer
 
-local CORRECT_KEY = "KEVONTOP"
-local GET_KEY_LINK = "https://discord.com/channels/1495324778205151283/1504369501515419748"
+local CORRECT_KEY = "ASTRALX"
+local GET_KEY_LINK = "https://discord.gg/pdHZy578F"
 
 getgenv().KEY_PASSED = false
 
@@ -36,7 +36,7 @@ end)
 local Title = Instance.new("TextLabel", Main)
 Title.Size = UDim2.new(1,0,0,50)
 Title.BackgroundTransparency = 1
-Title.Text = "🔒 KEV KEY SYSTEM"
+Title.Text = "🔒 ASTRAL HUB X KEY SYSTEM"
 Title.Font = Enum.Font.GothamBold
 Title.TextSize = 20
 Title.TextColor3 = Color3.fromRGB(255,255,255)
@@ -129,7 +129,7 @@ repeat task.wait() until getgenv().KEY_PASSED == true
 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/kervygaming6-png/PSL-HUB-SCRIPT/refs/heads/main/local%20lib%20for%20with%20key%20system", true))()
 
-local window = library:AddWindow(" 💎 KEV •🔏 PRIVATE", {
+local window = library:AddWindow(" 💎 Astral Hub X •🔏 PRIVATE", {
     main_color = Color3.fromRGB(0, 0, 225),
     min_size = Vector2.new(700, 700),
     can_resize = true,
@@ -2053,11 +2053,11 @@ end)
 
 local Credits = window:AddTab("Credits")
 
-Credits:AddLabel(" PAID KEV SCRIPT ").TextSize = 30
+Credits:AddLabel(" ASTRAL HUB X ").TextSize = 30
 
 Credits:AddLabel(" ").TextSize = 30
 
-Credits:AddLabel("Made by PSL_Kevv").TextSize = 30
+Credits:AddLabel("Made by Kevv").TextSize = 30
 
 Credits:AddLabel(" ").TextSize = 30
 
